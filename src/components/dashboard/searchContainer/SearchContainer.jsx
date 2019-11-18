@@ -1,26 +1,30 @@
 import React from "react";
+// Styles
 import "./searchContainer.scss";
+// Redux
+import { connect } from "react-redux";
+// Components
 import SearchBar from "../searchBar/SearchBar";
 import SearchCard from "./SearchCard";
 
-export default function SearchContainer() {
+function SearchContainer(props) {
   return (
     <div id="dashboard-search">
       <SearchBar />
       <div id="search__results">
         <div>
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
-          <SearchCard />
+          {props.searchResults.length > 0 &&
+            props.searchResults.map((result, key) => <SearchCard search={result} key={key} />)}
         </div>
       </div>
     </div>
   );
 }
+
+const mapState = state => ({
+  searchResults: state.Data.searchResults
+});
+
+const mapProps = {};
+
+export default connect(mapState, mapProps)(SearchContainer);
