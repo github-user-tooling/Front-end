@@ -2,7 +2,9 @@ import constants from "../constants";
 
 const initialState = {
   demoData: [],
-  dashboardData: []
+  dashboardData: [],
+  searchResults: [],
+  userID: ""
 };
 
 const dataReducer = (state = initialState, { type, payload }) => {
@@ -15,7 +17,18 @@ const dataReducer = (state = initialState, { type, payload }) => {
     case constants.GET_DASHBOARD_DATA:
       return {
         ...state,
-        dashboardData: {...payload }
+        dashboardData: { ...payload }
+      };
+    case constants.SEARCH_USERS:
+      return {
+        ...state,
+        searchResults: [...payload]
+      };
+    case constants.SET_USER_ID:
+      console.log(payload)
+      return {
+        ...state,
+        userID: payload
       };
     default:
       return state;
