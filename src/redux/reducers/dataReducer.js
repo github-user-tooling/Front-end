@@ -4,7 +4,8 @@ const initialState = {
   demoData: [],
   chartData: {},
   userDetailData: {},
-  dashboardData: []
+  dashboardData: [],
+  tendenciesData: {}
 };
 
 const dataReducer = (state = initialState, { type, payload }) => {
@@ -32,6 +33,12 @@ const dataReducer = (state = initialState, { type, payload }) => {
         ...state,
         dashboardData: {...payload }
       };
+
+    case constants.GET_TENDENCIES: 
+      return {
+        ...state,
+        tendenciesData: {...payload}
+      }
     default:
       return state;
   }
