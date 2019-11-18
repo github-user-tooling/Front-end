@@ -12,10 +12,10 @@ function App() {
   return (
     <div className="App">
       <Router>
+        {/* TODO delete for production // uncomment for demo event */}
         {/* <Demo /> */}
         <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/" component={Dashboard} />
+          <Route path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
     </div>

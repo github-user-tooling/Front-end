@@ -1,0 +1,23 @@
+#dashboard-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #23292e;
+  height: 60px;
+  h1,
+  a {
+    margin: 0 30px;
+    color: #fff;
+  }
+  a {
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid #fff;
+    padding: 5px 15px;
+    transition: all 100ms ease-in-out;
+    &:hover {
+      color: #23292e;
+      background: #fff;
+    }
+  }
+}

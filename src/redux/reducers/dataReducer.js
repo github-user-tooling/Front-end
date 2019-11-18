@@ -1,7 +1,8 @@
 import constants from "../constants";
 
 const initialState = {
-  demoData: []
+  demoData: [],
+  dashboardData: []
 };
 
 const dataReducer = (state = initialState, { type, payload }) => {
@@ -10,6 +11,11 @@ const dataReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         demoData: [...payload]
+      };
+    case constants.GET_DASHBOARD_DATA:
+      return {
+        ...state,
+        dashboardData: {...payload }
       };
     default:
       return state;
