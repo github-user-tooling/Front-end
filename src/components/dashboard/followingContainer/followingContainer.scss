@@ -1,0 +1,29 @@
+#dashboard-fc {
+  background: #999;
+  height: 80vh;
+  width: 400px;
+  margin: 40px;
+  padding: 1px 20px;
+  h1 {
+    text-align: center;
+    margin: 20px 0;
+  }
+}
+
+#fc__following-wrapper {
+  border: 1px solid #111;
+  height: 80%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px green;
+  }
+}

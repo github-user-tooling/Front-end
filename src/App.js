@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./styles/rootStyles/App.scss";
 // Pages
 import Dashboard from "./pages/dashboard/Dashboard";
+import Login from "./pages/login/Login";
 // Components
 import Demo from "./components/demo/Demo";
 
@@ -11,9 +12,10 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Demo />
+        {/* TODO delete for production // uncomment for demo event */}
+        {/* <Demo /> */}
         <Switch>
-          <Route path="/" component={Dashboard} />>
+          <Route path="/dashboard" component={Dashboard} />
         </Switch>
       </Router>
     </div>

@@ -1,0 +1,26 @@
+#dashboard-followingCard {
+  display: flex;
+  align-items: center;
+  border: 1px solid #111;
+  width: 90%;
+  height: 100px;
+  margin: 10px auto;
+  padding: 5px;
+}
+
+#followingCard__img-container {
+  height: 100%;
+  width: 30%;
+  overflow: hidden;
+}
+
+#followingCard__info {
+  margin: 0 0 0 10px;
+  h4 {
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
+  h5 {
+    font-weight: 400;
+  }
+}
