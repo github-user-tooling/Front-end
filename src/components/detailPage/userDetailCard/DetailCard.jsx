@@ -9,7 +9,7 @@ import { detailCardAction } from "../../../redux/actions/dataActions";
 
 function DetailsCard(props) {
   useEffect(() => {
-    props.detailCardAction();
+    props.detailCardAction(props.state.userID);
   }, []);
 
   return (
@@ -33,6 +33,7 @@ function DetailsCard(props) {
             <li>Repos: {props.state.userDetailData.repos}</li>
             <li>Commits in Past Year: {props.state.userDetailData.commits}</li>
             <li>Page: {props.state.userDetailData.url}</li>
+
           </ul>
         </div>
       </div>
