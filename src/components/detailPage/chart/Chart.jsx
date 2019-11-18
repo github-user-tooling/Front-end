@@ -4,7 +4,7 @@ import "./chart.scss";
 // Redux
 import { connect } from "react-redux";
 // Actions
-import { chartAction } from "../../redux/actions/dataActions";
+import { chartAction } from "../../../redux/actions/dataActions";
 // Chart
 import { Bar } from 'react-chartjs-2';
 // example structure, remove once data is coming in from backend
