@@ -15,24 +15,24 @@ function DetailsCard(props) {
   return (
     <div className="detailsCard">
 
-      <img src={DetailsCard.avatarUrl} alt="yeah" />
+      <img src={props.state.userDetailData.avatarUrl} alt="yeah" />
 
       <div className="detailsCardRight">
         <div className="detailsCardTop">
           <ul>
-            <li>User: {DetailsCard.login}</li>
-            <li>Name: {DetailsCard.name}</li>
-            <li>Bio: {DetailsCard.bio}</li>
-            <li>Location: {DetailsCard.location}</li>
+            <li>User: {props.state.userDetailData.login}</li>
+            <li>Name: {props.state.userDetailData.name}</li>
+            <li>Bio: {props.state.userDetailData.bio}</li>
+            <li>Location: {props.state.userDetailData.location}</li>
           </ul>
         </div>
 
         <div className="detailsCardBottom">
           <ul>
             
-            <li>Repos: {DetailsCard.repos}</li>
-            <li>Commits in Past Year: {DetailsCard.commits}</li>
-  <li>Page: {DetailsCard.url}</li>
+            <li>Repos: {props.state.userDetailData.repos}</li>
+            <li>Commits in Past Year: {props.state.userDetailData.commits}</li>
+            <li>Page: {props.state.userDetailData.url}</li>
           </ul>
         </div>
       </div>

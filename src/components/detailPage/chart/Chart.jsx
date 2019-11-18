@@ -10,22 +10,24 @@ import { Bar } from 'react-chartjs-2';
 // example structure, remove once data is coming in from backend
 import ChartObject from './ChartObjectStructure';
 
+// Could possibly also destructure props into { chartAction, state }
+
 function Chart(props) {
   useEffect(() => {
-    props.chartAction();
+    props.chartAction(props.userID);
   }, []);
 
   const barData = {
-    labels: ChartObject.months,
+    labels: props.state.chartData.months,
     datasets: [
       {
-        label: ChartObject.userName,
+        label: props.userName,
         backgroundColor: 'rgb(0,191,255)',
         borderColor: 'rgb(0,255,255)',
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         hoverBorderColor: 'rgba(255,99,132,1)',
-        data: ChartObject.commits
+        data: props.state.chartData.commits
       }
     ]
   };
