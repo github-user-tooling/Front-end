@@ -14,6 +14,34 @@ export const demoAction = () => dispatch => {
     .catch(err => console.log(err));
 };
 
+
+export const chartAction = (userID) => dispatch => {
+  axios
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}calendar`)
+    .then(res => {
+        console.log(res)
+      dispatch({
+        type: constants.CHART_CONSTANT,
+        payload: res
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+
+export const detailCardAction = () => dispatch => {
+  axios
+    .get("https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/profile")
+    .then(res => {
+        console.log(res)
+      dispatch({
+        type: constants.DETAILCARD_CONSTANT,
+        payload: res
+      });
+    })
+    .catch(err => console.log(err));
+};
+
 // For user on dashboard
 export const dashboardData = () => dispatch => {
   const navDemoData = {
