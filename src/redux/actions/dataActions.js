@@ -14,6 +14,47 @@ export const demoAction = () => dispatch => {
     .catch(err => console.log(err));
 };
 
+
+export const chartAction = (userID) => dispatch => {
+  axios
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/calendar`)
+    .then(res => {
+        console.log(res)
+      dispatch({
+        type: constants.CHART_CONSTANT,
+        payload: res
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+export const tendenciesAction = (userID) => dispatch => {
+  axios
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/tendencies`)
+    .then(res => {
+        console.log(res)
+      dispatch({
+        type: constants.GET_TENDENCIES,
+        payload: res
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+
+export const detailCardAction = (userID) => dispatch => {
+  axios
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/profile`)
+    .then(res => {
+        console.log(res)
+      dispatch({
+        type: constants.DETAILCARD_CONSTANT,
+        payload: res
+      });
+    })
+    .catch(err => console.log(err));
+};
+
 // For user on dashboard
 export const dashboardData = () => dispatch => {
   const navDemoData = {
@@ -99,6 +140,7 @@ export const dashboardData = () => dispatch => {
   //     payload:
   //   })
   // }).catch(err => console.log(err))
+
 };
 
 export const searchUser = queryData => dispatch => {
@@ -131,7 +173,7 @@ export const getUserDetails = userId => dispatch => {
 export const favoriteUser = userId => dispatch => {
   console.log(userId);
   axios
-    .get(`https://git-user-breakdown.herokuapp.com//unfollow${userId}`)
+    .get(`https://git-user-breakdown.herokuapp.com/unfollow${userId}`)
     .then(res => {
       console.log(res.data);
     })
