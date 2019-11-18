@@ -17,7 +17,7 @@ export const demoAction = () => dispatch => {
 
 export const chartAction = (userID) => dispatch => {
   axios
-    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/:${userID}/calendar`)
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/calendar`)
     .then(res => {
         console.log(res)
       dispatch({
@@ -30,7 +30,7 @@ export const chartAction = (userID) => dispatch => {
 
 export const tendenciesAction = (userID) => dispatch => {
   axios
-    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/:${userID}/tendencies`)
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/tendencies`)
     .then(res => {
         console.log(res)
       dispatch({
@@ -44,7 +44,7 @@ export const tendenciesAction = (userID) => dispatch => {
 
 export const detailCardAction = (userID) => dispatch => {
   axios
-    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/:${userID}profile`)
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/profile`)
     .then(res => {
         console.log(res)
       dispatch({
