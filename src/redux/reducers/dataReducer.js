@@ -1,7 +1,8 @@
 import constants from "../constants";
 
 const initialState = {
-  demoData: []
+  demoData: [],
+  chartData: {}
 };
 
 const dataReducer = (state = initialState, { type, payload }) => {
@@ -11,6 +12,13 @@ const dataReducer = (state = initialState, { type, payload }) => {
         ...state,
         demoData: [...payload]
       };
+
+    case constants.CHART_CONSTANT:
+      return {
+        ...state,
+        chartData: {...payload}
+      };
+
     default:
       return state;
   }
