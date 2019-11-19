@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import {Redirect} from 'react-router-dom';
 // Styles
 import "./tendencies.scss";
 // Redux
@@ -7,11 +8,19 @@ import { connect } from "react-redux";
 import { tendenciesAction } from "../../../redux/actions/dataActions";
 
 function TendenciesCard(props) {
+
+  const [redirect, setRedirect] = useState(false);
+
   useEffect(() => {
-    props.tendenciesAction(props.userID);
-  }, []);
 
+    if (props.userID) {
+      props.tendenciesAction(props.userID);
 
+    } else {
+      setRedirect(true);
+    }
+
+  }, [])
 
   const oftenHour = props.state.Data.tendenciesData.mostOftenHour;
   const timeOfDay = {
@@ -50,6 +59,12 @@ function TendenciesCard(props) {
         }
         
       </div>
+
+      {
+        redirect
+        ? <Redirect to="/" />
+        : null
+      }
     </div>
   );
 }

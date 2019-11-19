@@ -44,6 +44,13 @@ export const tendenciesAction = (userID) => dispatch => {
     .catch(err => console.log(err));
 };
 
+// 11.19.2019 2:44 PST - attempt to set state for redirecting to dash board in case userID state not accessible
+export const redirectDashboardAction = () => dispatch => {
+  dispatch({
+    type: constants.REDIRECT_TO_DASHBOARD
+  })
+}
+
 export const detailCardAction = userID => dispatch => {
   axiosWithAuth()
     .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/profile`)
