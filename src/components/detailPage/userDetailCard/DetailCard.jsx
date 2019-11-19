@@ -5,16 +5,12 @@ import './detailCard.scss';
 import { connect } from "react-redux";
 //Components
 import Chart from '../chart/Chart';
-//Hooks
-import { useParams } from 'react-router-dom';
 // Actions
 import { detailCardAction } from "../../../redux/actions/dataActions";
 
 function DetailsCard(props) {
-  const { id } = useParams();
-
   useEffect(() => {
-    props.detailCardAction(id);
+    props.detailCardAction(props.state.userID);
   }, []);
 
   if (!props.userDetailData) return <div>loading...</div>;

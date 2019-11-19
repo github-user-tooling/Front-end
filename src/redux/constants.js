@@ -1,11 +1,14 @@
 const constants = {
-  DEMO_CONSTANT: 'demo:get-demo-data',
+  DEMO_CONSTANT: "demo:get-demo-data",
+  SEARCH_USERS: "data:search-users",
+  SET_USER_ID: "data:set-user-id",
   CHART_CONSTANT: 'data:get-chart-data',
   DETAILCARD_CONSTANT: 'data:get-userdetail-data',
   GET_DASHBOARD_DATA: 'data:get-dashboard-data',
   GET_SEARCH_QUERY: 'data:search-query',
   LOGIN_USER: 'user:login-user',
-  LOGOUT_USER: 'user:logout-user'
+  LOGOUT_USER: 'user:logout-user',
+  GET_TENDENCIES: 'data:get-tendencies-data'
 };
 
 export default constants;

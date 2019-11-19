@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+// Styles
 import "./searchBar.scss";
+// Redux
+import { connect } from "react-redux";
+// Actions
+import { searchUser } from "../../../redux/actions/dataActions";
 
-function SearchBar() {
+function SearchBar(props) {
   let [searchBar, setSearchBar] = useState({
     query: ""
   });
@@ -13,10 +18,15 @@ function SearchBar() {
     });
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.searchUser(searchBar.query);
+  };
+
   return (
     <div id="dashboard-searchBar">
       <h1>Git Search</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="query"
@@ -24,10 +34,19 @@ function SearchBar() {
           onChange={handleChange}
           placeholder="Enter Username"
         />
+
         <button type="submit" hidden></button>
       </form>
     </div>
   );
 }
 
-export default SearchBar;
+const mapState = state => ({
+  state
+});
+
+const mapProps = {
+  searchUser
+};
+
+export default connect(mapState, mapProps)(SearchBar);

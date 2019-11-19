@@ -29,6 +29,20 @@ export const chartAction = (userID) => dispatch => {
     .catch(err => console.log(err));
 };
 
+export const tendenciesAction = (userID) => dispatch => {
+  axios
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/tendencies`)
+    .then(res => {
+        console.log(res)
+      dispatch({
+        type: constants.GET_TENDENCIES,
+        payload: res
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+
 
 export const detailCardAction = userId => dispatch => {
   // axiosWithAuth()
@@ -66,7 +80,7 @@ export const dashboardData = () => dispatch => {
       login: "PCDSandwichMan",
       name: "Matt"
     },
-    followers: [
+    following: [
       {
         id: "MDQ6VXNlcjUzMjExNTIz",
         avatarUrl: "https://avatars1.githubusercontent.com/u/53211523?v=4",
@@ -144,4 +158,44 @@ export const dashboardData = () => dispatch => {
   //     payload:
   //   })
   // }).catch(err => console.log(err))
+
+};
+
+export const searchUser = queryData => dispatch => {
+  axios
+    .get(`https://git-user-breakdown.herokuapp.com/search/${queryData}`, {
+      withCredentials: true
+    })
+    .then(res => {
+      console.log(res.data);
+      dispatch({
+        type: constants.SEARCH_USERS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+// Used when client from dashboard to user details
+export const getUserDetails = userId => dispatch => {
+  console.log(userId);
+  dispatch({
+    type: constants.SET_USER_ID,
+    payload: userId
+  });
+};
+
+// Used to favorite the user from dashboard search
+export const favoriteUser = userId => dispatch => {
+  console.log(userId);
+  axios
+    .get(`https://git-user-breakdown.herokuapp.com/unfollow${userId}`)
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };

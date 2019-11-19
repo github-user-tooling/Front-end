@@ -1,5 +1,6 @@
 #dashboard-fc {
-  background: #999;
+  background: #d6d6d6;
+  box-shadow: 2px 2px 4px #111;
   height: 80vh;
   width: 400px;
   margin: 40px;
@@ -7,14 +8,16 @@
   h1 {
     text-align: center;
     margin: 20px 0;
+    font-weight: 600;
   }
 }
 
 #fc__following-wrapper {
-  border: 1px solid #111;
+  background: #fff;
   height: 80%;
   overflow-x: hidden;
   overflow-y: scroll;
+  box-shadow: 2px 2px 4px #111;
   &::-webkit-scrollbar {
     width: 4px;
   }

@@ -8,6 +8,10 @@
   padding: 10px 15px;
   h1 {
     font-size: 1.5rem;
+    padding: 5px 10px;
+    &:hover {
+      cursor: pointer;
+    }
   }
   i {
     display: flex;
@@ -15,13 +19,14 @@
     align-items: center;
     width: 35px;
     height: 35px;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: #fff;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
       1px 1px 0 #000;
     transition: all 100ms ease-in-out;
     &:hover {
       cursor: pointer;
+      color: #969696;
     }
   }
 }

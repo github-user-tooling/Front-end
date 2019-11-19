@@ -1,27 +1,40 @@
 import React from "react";
-import { withRouter } from 'react-router-dom';
 
+// Styles
 import "./followingCard.scss";
+// Actions
+import { getUserDetails } from "../../../redux/actions/dataActions";
+// Redux
+import { connect } from "react-redux";
 
-function FollowingCard({ history }) {
-  const userId = "MDQ6VXNlcjEzNDQxNDAw" //Temp user ID
+function FollowingCard({ getUserDetails, user }) {
+  const handleClick = () => {
+    getUserDetails(user.id);
+    // TODO matt: set user with action and history.push('/details')
+  };
 
   return (
-    <div id="dashboard-followingCard" onClick={() => history.push(`/dashboard/follower/${userId}`)}>
+    <div id="dashboard-followingCard" onClick={handleClick}>
       <div id="followingCard__img-container">
-        <img
-          src="https://images.pexels.com/photos/2820134/pexels-photo-2820134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-          alt="user image"
-        />
+        <img src={user.avatarUrl} alt="user image" />
       </div>
       <div id="followingCard__info">
-        <h4>Username</h4>
-        <h5>Acutal Name</h5>
-        <h5>Followers: </h5>
-        <h5>Following: </h5>
+        <h4>{user.login}</h4>
+        <h5>{user.name}</h5>
+        <h5>Followers: {user.followersCount}</h5>
+        <h5>Following: {user.followingCount}</h5>
       </div>
     </div>
   );
 }
 
-export default withRouter(FollowingCard);
+const mapState = state => ({
+  state
+});
+
+const mapAction = {
+  getUserDetails
+};
+
+export default connect(mapState, mapAction)(FollowingCard);
+
