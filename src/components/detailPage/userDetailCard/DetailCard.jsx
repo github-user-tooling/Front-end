@@ -44,7 +44,7 @@ function DetailsCard(props) {
           </div>
         </div>
         <div className="details-chart">
-          <Chart userID={'MDQ6VXNlcjUzNTM0NjI2'} username={props.userDetailData.login} />
+          <Chart userID={props.userID} username={props.userDetailData.login} />
         </div>
         <div className="buttons">
           <button className="btn-notes" onClick={() => props.toggleModal(props.modalIsOpen)}>Notes</button>
