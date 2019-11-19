@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Styles
 import "./styles/rootStyles/App.scss";
 // Pages
-
 import Dashboard from "./pages/dashboard/Dashboard";
 // Components
 import Login from "./pages/login/Login";

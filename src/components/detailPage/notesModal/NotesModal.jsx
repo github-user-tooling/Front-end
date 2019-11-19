@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 // Redux
 import { connect } from "react-redux";
 // Actions
-import { demoAction } from "../../../redux/actions/dataActions";
 import { toggleModal } from "../../../redux/actions/userActions";
 // Modal
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -17,7 +16,7 @@ function NotesModal(props) {
 
 
   useEffect(() => {
-    props.demoAction();
+    // props.demoAction();
   }, []);
 
   console.log(props.isOpen);
@@ -39,7 +38,6 @@ const mapStateToProps = state => ({
 });
 
 const mapActionsToProps = {
-  demoAction,
   toggleModal
 };
 

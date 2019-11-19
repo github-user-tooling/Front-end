@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 // Styles
-import './tendencies.scss';
+import "./tendencies.scss";
 // Redux
 import { connect } from "react-redux";
 // Actions
@@ -9,7 +9,7 @@ import { tendenciesAction } from "../../../redux/actions/dataActions";
 function TendenciesCard(props) {
   useEffect(() => {
     props.tendenciesCardAction(props.userID);
-  })
+  });
 
   return (
     <div className="tendenciesCard">
@@ -19,15 +19,16 @@ function TendenciesCard(props) {
         <li>props.state.tendenciesData.mostUsedLang</li>
       </ul>
     </div>
-  )
+  );
 }
 
 const mapStateToProps = state => ({
   state
 });
 
-const mapStateToProps = {
+// ! Wrong!!!!!!!!!!!!! < = mucho bad < = no again < = or you fired
+const mapActionsToProps = {
   tendenciesAction
 };
 
-export default connect(mapStateToProps, mapStateToProps)(TendenciesCard);
+export default connect(mapStateToProps, mapActionsToProps)(TendenciesCard);
