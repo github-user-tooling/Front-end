@@ -1,18 +1,14 @@
 import React from "react";
-import axios from "axios";
 // Styles
 import "./nav.scss";
 // Redux
 import { connect } from "react-redux";
-import Axios from "axios";
 
 function Nav(props) {
-  const handleClick = () =>
-    axios.get("https://git-user-breakdown.herokuapp.com/logout"); 
   return (
     <div id="dashboard-nav">
       <h1>{props.navInfo && props.navInfo.login}</h1>
-      <a onClick={handleClick} href="/">
+      <a href="https://staging-master-5ton9t2hfmasnxc.herokuapp.com/auth/logout">
         Logout
       </a>
     </div>
