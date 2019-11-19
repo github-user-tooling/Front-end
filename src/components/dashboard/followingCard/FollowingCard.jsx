@@ -7,10 +7,10 @@ import { getUserDetails } from "../../../redux/actions/dataActions";
 // Redux
 import { connect } from "react-redux";
 
-function FollowingCard({ getUserDetails, user }) {
+function FollowingCard({ getUserDetails, user, history }) {
   const handleClick = () => {
-    getUserDetails(user.id);
-    // TODO matt: set user with action and history.push('/details')
+    getUserDetails(user.id); 
+    history.push('/details')
   };
 
   return (

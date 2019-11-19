@@ -19,8 +19,8 @@ function Dashboard(props) {
     <div>
       <Nav />
       <div id="dashboard-main">
-        <FollowingContainer />
-        <SearchContainer />
+        <FollowingContainer history={props.history} />
+        <SearchContainer  history={props.history}/>
       </div>
     </div>
   );

@@ -8,24 +8,26 @@ import { tendenciesAction } from "../../../redux/actions/dataActions";
 
 function TendenciesCard(props) {
   useEffect(() => {
-    props.tendenciesCardAction(props.state.userID);
+    props.tendenciesCardAction(props.userID);
   })
 
   return (
-    <div>
-      <p>props.state.tendenciesData.mostOftenHour</p>
-      <p>props.state.tendenciesData.mostOftenDay</p>
-      <p>props.state.tendenciesData.mostUsedLang</p>
+    <div className="tendenciesCard">
+      <ul>
+        <li>props.state.tendenciesData.mostOftenHour</li>
+        <li>props.state.tendenciesData.mostOftenDay</li>
+        <li>props.state.tendenciesData.mostUsedLang</li>
+      </ul>
     </div>
   )
 }
 
-const mapState = state => ({
+const mapStateToProps = state => ({
   state
 });
 
-const mapActions = {
+const mapStateToProps = {
   tendenciesAction
 };
 
-export default connect(mapState, mapActions)(TendenciesCard);
+export default connect(mapStateToProps, mapStateToProps)(TendenciesCard);

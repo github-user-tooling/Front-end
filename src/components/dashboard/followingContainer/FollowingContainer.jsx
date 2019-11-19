@@ -12,7 +12,9 @@ function FollowingContainer(props) {
       <h1>Following</h1>
       <div id="fc__following-wrapper">
         {props.followerData
-          ? props.followerData.map((user, key) => <FollowingCard user={user} key={key} />)
+          ? props.followerData.map((user, key) => (
+              <FollowingCard user={user} history={props.history} key={key} />
+            ))
           : null}
       </div>
     </div>
