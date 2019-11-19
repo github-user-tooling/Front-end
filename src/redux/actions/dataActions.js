@@ -5,7 +5,7 @@ import { axiosWithAuth } from '../../components/utils/axiosWithAuth';
 // For user on dashboard
 export const dashboardData = () => dispatch => {
   axios
-    .get("https://git-user-breakdown.herokuapp.com/user/dashboard", {
+    .get("https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/dashboard", {
       withCredentials: true
     })
     .then(res => {
@@ -44,9 +44,9 @@ export const tendenciesAction = (userID) => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const detailCardAction = userId => dispatch => {
+export const detailCardAction = userID => dispatch => {
   axiosWithAuth()
-    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userId}/profile`)
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/profile`)
     .then(res => {
       console.log(res)
       dispatch({
@@ -59,7 +59,7 @@ export const detailCardAction = userId => dispatch => {
 
 export const searchUser = queryData => dispatch => {
   axios
-    .get(`https://git-user-breakdown.herokuapp.com/search/${queryData}`, {
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/search/${queryData}`, {
       withCredentials: true
     })
     .then(res => {

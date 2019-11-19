@@ -12,9 +12,9 @@ import { detailCardAction } from "../../../redux/actions/dataActions";
 import { toggleModal } from "../../../redux/actions/userActions";
 
 function DetailsCard(props) {
+
   useEffect(() => {
-    // props.detailCardAction(props.state.userID);
-    props.detailCardAction('MDQ6VXNlcjUzNTM0NjI2');
+    props.detailCardAction(props.userID);
   }, []);
 
   if (!props.userDetailData) return <div>loading...</div>;
@@ -57,7 +57,8 @@ function DetailsCard(props) {
 
 const mapStateToProps = state => ({
   modalIsOpen: state.User.modalIsOpen,
-  userDetailData: state.Data.userDetailData
+  userDetailData: state.Data.userDetailData,
+  userID: state.Data.userID
 });
 
 const mapActionsToProps = {
