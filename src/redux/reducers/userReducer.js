@@ -3,7 +3,8 @@ import constants from "../constants";
 const initialState = {
   userLogin: {
     isLogged: null
-  }
+  },
+  modalIsOpen: false
 };
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -19,6 +20,12 @@ const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         userLogin: payload
       };
+
+    case constants.TOGGLE_MODAL:
+      return {
+        ...state,
+        modalIsOpen: !state.modalIsOpen
+      }
 
     default:
       return state;

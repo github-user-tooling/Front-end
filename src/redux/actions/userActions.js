@@ -16,4 +16,13 @@ export const logoutUser = () => dispatch => {
       isLogged: false,
     }
   });
-} 
+}
+
+export const toggleModal = () => dispatch => {
+  dispatch({
+    type: constants.TOGGLE_MODAL,
+    // payload: {
+    //   modalIsOpen: !modalState
+    // }
+  })
+}
