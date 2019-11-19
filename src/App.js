@@ -4,15 +4,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./styles/rootStyles/App.scss";
 // Pages
 import Dashboard from "./pages/dashboard/Dashboard";
-// Components
-import Demo from "./components/demo/Demo";
+// Components 
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        {/* TODO delete for production // uncomment for demo event */}
-        {/* <Demo /> */}
+      <Router> 
         <Switch>
           <Route path="/dashboard" component={Dashboard} />>
         </Switch>

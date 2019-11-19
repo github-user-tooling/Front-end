@@ -14,7 +14,9 @@ function SearchContainer(props) {
       <div id="search__results">
         <div>
           {props.searchResults.length > 0 &&
-            props.searchResults.map((result, key) => <SearchCard search={result} key={key} />)}
+            props.searchResults.map((result, key) => (
+              <SearchCard history={props.history} search={result} key={key} />
+            ))}
         </div>
       </div>
     </div>
@@ -22,7 +24,8 @@ function SearchContainer(props) {
 }
 
 const mapState = state => ({
-  searchResults: state.Data.searchResults
+  searchResults: state.Data.searchResults,
+  existingFollowers: state.Data.dashboardData.following
 });
 
 const mapProps = {};

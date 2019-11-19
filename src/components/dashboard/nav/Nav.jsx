@@ -3,16 +3,16 @@ import axios from "axios";
 // Styles
 import "./nav.scss";
 // Redux
-import { connect } from "react-redux";
-import Axios from "axios";
+import { connect } from "react-redux"; 
 
 function Nav(props) {
-  const handleClick = () =>
-    axios.get("https://git-user-breakdown.herokuapp.com/logout"); 
+  const handleClick = () => {
+    axios.get("https://git-user-breakdown.herokuapp.com/logout");
+  }; 
   return (
     <div id="dashboard-nav">
       <h1>{props.navInfo && props.navInfo.login}</h1>
-      <a onClick={handleClick} href="/">
+      <a onClick={handleClick}>
         Logout
       </a>
     </div>
