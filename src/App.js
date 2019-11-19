@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PrivateRoute from "./components/utils/PrivateRoute";
 // Styles
 import "./styles/rootStyles/App.scss";
 // Pages
@@ -8,7 +9,6 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login";
 import UserDetails from "./pages/userDetails/UserDetails";
 
-import PrivateRoute from "./components/utils/PrivateRoute";
 
 
 function App() {
