@@ -39,7 +39,7 @@ function DetailsCard(props) {
               {props.userDetailData.bio ? <li>Bio: {props.userDetailData.bio}</li> : null}
             </ul>
             <div className="details-tendencies">
-              {/* <Tendencies /> */}
+            <Tendencies userID={props.userID}/>
             </div>
           </div>
         </div>
