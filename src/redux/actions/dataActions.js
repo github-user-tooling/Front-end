@@ -1,5 +1,6 @@
 import constants from "../constants";
 import axios from "axios";
+import { axiosWithAuth } from '../../components/utils/axiosWithAuth';
 
 // For user on dashboard
 export const dashboardData = () => dispatch => {
@@ -16,16 +17,14 @@ export const dashboardData = () => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const chartAction = userID => dispatch => {
-  axios
-    .get(
-      `https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/calendar`
-    )
+export const chartAction = (userID) => dispatch => {
+  axiosWithAuth()
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/calendar`)
     .then(res => {
-      console.log(res);
+      console.log(res)
       dispatch({
         type: constants.CHART_CONSTANT,
-        payload: res
+        payload: res.data
       });
     })
     .catch(err => console.log(err));
@@ -46,19 +45,33 @@ export const tendenciesAction = userID => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const detailCardAction = userID => dispatch => {
-  axios
-    .get(
-      `https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/profile`
-    )
-    .then(res => {
-      console.log(res);
-      dispatch({
-        type: constants.DETAILCARD_CONSTANT,
-        payload: res
-      });
-    })
-    .catch(err => console.log(err));
+export const detailCardAction = userId => dispatch => {
+  // axiosWithAuth()
+  //   .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userId}/profile`)
+  //   .then(res => {
+  //     console.log(res)
+  //     dispatch({
+  //       type: constants.DETAILCARD_CONSTANT,
+  //       payload: res.data
+  //     });
+  //   })
+  //   .catch(err => console.log(err));
+  // console.log(userId);
+  const detailsDemoData = {
+    avatarUrl: 'https://avatars1.githubusercontent.com/u/13441400?v=4',
+    login: 'TinySquid',
+    name: 'Mike Nunes',
+    bio: 'Currently in the Lambda School WEB24 Track - Full Stack Development.',
+    location: 'California',
+    url: 'https://github.com/TinySquid',
+    repositories: 95,
+    // commits: 487
+  }
+
+  dispatch({
+    type: constants.DETAILCARD_CONSTANT,
+    payload: detailsDemoData
+  });
 };
 
 export const searchUser = queryData => dispatch => {

@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 // Styles
 import "./nav.scss";
 // Redux
@@ -7,7 +6,7 @@ import { connect } from "react-redux";
 
 function Nav(props) {
   const handleClick = () => {
-    axios.get("https://git-user-breakdown.herokuapp.com/logout");
+    axios.get("https://staging-master-5ton9t2hfmasnxc.herokuapp.com/auth/logout");
   }; 
   return (
     <div id="dashboard-nav">

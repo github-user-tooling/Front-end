@@ -3,17 +3,24 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Styles
 import "./styles/rootStyles/App.scss";
 // Pages
+
 import Dashboard from "./pages/dashboard/Dashboard";
 // Components
 import Login from "./pages/login/Login";
-// Components
+import UserDetails from "./pages/userDetails/UserDetails";
+
+import PrivateRoute from "./components/utils/PrivateRoute";
+
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/dashboard/follower/:id" component={UserDetails} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/" component={Dashboard} />
         </Switch>
       </Router>
     </div>

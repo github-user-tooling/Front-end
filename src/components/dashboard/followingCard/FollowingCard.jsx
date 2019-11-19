@@ -1,4 +1,5 @@
 import React from "react";
+
 // Styles
 import "./followingCard.scss";
 // Actions
@@ -36,3 +37,4 @@ const mapAction = {
 };
 
 export default connect(mapState, mapAction)(FollowingCard);
+

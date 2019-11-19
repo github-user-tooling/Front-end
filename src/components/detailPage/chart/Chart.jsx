@@ -7,10 +7,6 @@ import { connect } from "react-redux";
 import { chartAction } from "../../../redux/actions/dataActions";
 // Chart
 import { Bar } from 'react-chartjs-2';
-// example structure, remove once data is coming in from backend
-import ChartObject from './ChartObjectStructure';
-
-// Could possibly also destructure props into { chartAction, state }
 
 function Chart(props) {
   useEffect(() => {
@@ -18,16 +14,16 @@ function Chart(props) {
   }, []);
 
   const barData = {
-    labels: props.state.chartData.months,
+    labels: props.chartData.months,
     datasets: [
       {
-        label: props.userName,
+        label: props.username,
         backgroundColor: 'rgb(0,191,255)',
         borderColor: 'rgb(0,255,255)',
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         hoverBorderColor: 'rgba(255,99,132,1)',
-        data: props.state.chartData.commits
+        data: props.chartData.commits
       }
     ]
   };
@@ -35,14 +31,14 @@ function Chart(props) {
   return (
     <div className="barCont">
       <Bar
-      data={barData}
+        data={barData}
       />
     </div>
   );
 }
 
 const mapStateToProps = state => ({
-  state
+  chartData: state.Data.chartData
 });
 
 const mapActionsToProps = {
