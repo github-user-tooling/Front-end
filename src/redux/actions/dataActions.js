@@ -30,13 +30,13 @@ export const chartAction = (userID) => dispatch => {
 };
 
 export const tendenciesAction = (userID) => dispatch => {
-  axios
+  axiosWithAuth()
     .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/tendencies`)
     .then(res => {
         console.log(res)
       dispatch({
         type: constants.GET_TENDENCIES,
-        payload: res
+        payload: res.data
       });
     })
     .catch(err => console.log(err));
