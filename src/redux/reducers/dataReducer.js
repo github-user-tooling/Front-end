@@ -4,7 +4,10 @@ const initialState = {
   demoData: [],
   dashboardData: [],
   searchResults: [],
-  userID: ""
+  userID: "",
+  chartData: {},
+  userDetailData: {},
+  tendenciesData: {}
 };
 
 const dataReducer = (state = initialState, { type, payload }) => {
@@ -14,6 +17,19 @@ const dataReducer = (state = initialState, { type, payload }) => {
         ...state,
         demoData: [...payload]
       };
+
+    case constants.CHART_CONSTANT:
+      return {
+        ...state,
+        chartData: {...payload}
+      };
+
+    case constants.DETAILCARD_CONSTANT:
+      return {
+        ...state,
+        userDetailData: {...payload}
+      };
+
     case constants.GET_DASHBOARD_DATA:
       return {
         ...state,
@@ -30,6 +46,12 @@ const dataReducer = (state = initialState, { type, payload }) => {
         ...state,
         userID: payload
       };
+
+    case constants.GET_TENDENCIES: 
+      return {
+        ...state,
+        tendenciesData: {...payload}
+      }
     default:
       return state;
   }
