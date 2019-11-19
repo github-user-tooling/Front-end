@@ -1,9 +1,13 @@
 import React from "react";
+import { withRouter } from 'react-router-dom';
+
 import "./followingCard.scss";
 
-function FollowingCard() {
+function FollowingCard({ history }) {
+  const userId = "MDQ6VXNlcjEzNDQxNDAw" //Temp user ID
+
   return (
-    <div id="dashboard-followingCard">
+    <div id="dashboard-followingCard" onClick={() => history.push(`/dashboard/follower/${userId}`)}>
       <div id="followingCard__img-container">
         <img
           src="https://images.pexels.com/photos/2820134/pexels-photo-2820134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
@@ -20,4 +24,4 @@ function FollowingCard() {
   );
 }
 
-export default FollowingCard;
+export default withRouter(FollowingCard);
