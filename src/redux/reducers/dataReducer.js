@@ -8,6 +8,7 @@ const initialState = {
   chartData: {},
   userDetailData: {},
   tendenciesData: {}
+
 };
 
 const dataReducer = (state = initialState, { type, payload }) => {

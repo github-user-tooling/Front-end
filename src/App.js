@@ -19,6 +19,7 @@ function App() {
           <Route path="/login" component={Login} />
           <PrivateRoute path="/dashboard/follower/" component={UserDetails} />
           <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute path="/details" component={UserDetails} />
           <PrivateRoute exact path="/" component={Dashboard} />
         </Switch>
       </Router>
