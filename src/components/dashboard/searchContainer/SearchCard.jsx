@@ -6,29 +6,29 @@ import {
   getUserDetails,
   favoriteUser
 } from "../../../redux/actions/dataActions";
+import { dashboardData } from "../../../redux/actions/dataActions";
 // Redux
 import { connect } from "react-redux";
 
 function SearchCard(props) {
-  const handleClick = () => {
-    console.log(props.search.id);
-    props.getUserDetails(props.search.id);
-
-    // TODO matt: set user with action and history.push('/details')
-  };
-
   let [btnStatus, setBtnStatus] = useState({
     favoriteActive: false
   });
 
+  const handleDetailsClick = () => {
+    props.getUserDetails(props.search.id);
+    props.history.push("/details");
+  };
+
   const handleFavorite = e => {
     props.favoriteUser(props.search.id);
-    console.log(props.search.id);
+    document.getElementById("dashboard-resultsCard").remove();
+    props.dashboardData();
   };
 
   return (
     <div id="dashboard-resultsCard">
-      <h1 onClick={handleClick}>{props.search.login}</h1>
+      <h1 onClick={handleDetailsClick}>{props.search.login}</h1>
       <i
         className="fa fa-github"
         name="favoriteActive"
@@ -44,7 +44,8 @@ const mapState = state => ({
 
 const mapActions = {
   getUserDetails,
-  favoriteUser
+  favoriteUser,
+  dashboardData
 };
 
 export default connect(mapState, mapActions)(SearchCard);
