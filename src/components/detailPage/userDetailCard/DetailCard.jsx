@@ -1,49 +1,51 @@
 import React, { useEffect } from "react";
 // Styles
-import "./chart.scss";
+import './detailCard.scss';
 // Redux
 import { connect } from "react-redux";
+//Components
+import Chart from '../chart/Chart';
 // Actions
 import { detailCardAction } from "../../../redux/actions/dataActions";
-// Object data structure import, remove once data is coming in from middleware
 
 function DetailsCard(props) {
   useEffect(() => {
     props.detailCardAction(props.state.userID);
   }, []);
 
+  if (!props.userDetailData) return <div>loading...</div>;
+
   return (
-    <div className="detailsCard">
-
-      <img src={props.state.userDetailData.avatarUrl} alt="yeah" />
-
-      <div className="detailsCardRight">
-        <div className="detailsCardTop">
-          <ul>
-            <li>User: {props.state.userDetailData.login}</li>
-            <li>Name: {props.state.userDetailData.name}</li>
-            <li>Bio: {props.state.userDetailData.bio}</li>
-            <li>Location: {props.state.userDetailData.location}</li>
-          </ul>
+    <div className="details-card">
+      <div className="details-content">
+        <div className="details-avatar">
+          <img src={props.userDetailData.avatarUrl} alt="yeah" />
         </div>
 
-        <div className="detailsCardBottom">
+        <div className="details-info">
           <ul>
-            
-            <li>Repos: {props.state.userDetailData.repos}</li>
-            <li>Commits in Past Year: {props.state.userDetailData.commits}</li>
-            <li>Page: {props.state.userDetailData.url}</li>
-
+            <li>{props.userDetailData.login}</li>
+            <li>{props.userDetailData.name}</li>
+            <li>Bio: {props.userDetailData.bio}</li>
+            <li>Location: {props.userDetailData.location}</li>
+            <li>Repos: {props.userDetailData.repositories}</li>
+            <li>Profile : <a href={props.userDetailData.url} target="_blank" rel="noopener noreferrer">{props.userDetailData.url}</a></li>
           </ul>
         </div>
       </div>
+      <div className="details-chart">
+        <Chart userID={id} username={props.userDetailData.login} />
+      </div>
+      <div className="buttons">
+        <button className="btn-notes">Notes</button>
+        <button className="btn-unfollow">Unfollow</button>
+      </div>
     </div>
-
   );
 }
 
 const mapStateToProps = state => ({
-  state
+  userDetailData: state.Data.userDetailData
 });
 
 const mapActionsToProps = {

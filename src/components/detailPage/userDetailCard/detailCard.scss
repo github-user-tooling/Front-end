@@ -1,0 +1,75 @@
+.details-card {
+  display: flex;
+  flex-direction: column;
+  width: 880px;
+  margin: 1.5% auto;
+  box-shadow: 0 0 10px 2px rgba(60, 60, 60, 0.5);
+  border: 1px solid rgba(60, 60, 60, 0.3);
+}
+
+.details-content {
+  display: flex;
+  padding: 1% 2.5% 0 0;
+}
+
+.details-avatar {
+  width: 40%;
+  padding: 1%;
+
+  img {
+    width: 95%;
+    padding: 2%;
+    border: 1px solid rgb(211, 211, 211);
+  }
+}
+
+.details-info {
+  li {
+    margin: .5rem 0;
+
+    &:first-child{
+      font-size: 2.4rem;
+      font-style: italic;
+    }
+    
+    &:nth-child(2){
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.details-chart {
+  width: 80%;
+  margin: 0 auto 2rem auto;
+  // border: 1px solid gray;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 1rem;
+
+  button {
+    height: 2.5rem;
+    width: 30%;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    background-color: #3ad346;
+    transition: all 100ms ease-in-out;
+    cursor: pointer;
+    
+    &:hover {
+      box-shadow: inset 0 0 20px 4px rgba(56, 161, 35, 0.8);
+    }
+  }
+
+  .btn-unfollow {
+    background: #d33a3a;
+    &:hover {
+      box-shadow: inset 0 0 20px 4px rgba(161, 35, 35, 0.8);
+    }
+  }
+}
+
+

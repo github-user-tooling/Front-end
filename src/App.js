@@ -3,19 +3,21 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Styles
 import "./styles/rootStyles/App.scss";
 // Pages
-import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login";
+import Dashboard from "./pages/dashboard/Dashboard";
+import UserDetails from "./pages/userDetails/UserDetails";
 // Components
-import Demo from "./components/demo/Demo";
+import PrivateRoute from "./components/utils/PrivateRoute";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        {/* TODO delete for production // uncomment for demo event */}
-        {/* <Demo /> */}
         <Switch>
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/dashboard/follower/:id" component={UserDetails} />
+          <PrivateRoute path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/" component={Dashboard} />
         </Switch>
       </Router>
     </div>
