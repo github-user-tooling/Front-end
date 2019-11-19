@@ -35,7 +35,7 @@ export const tendenciesAction = (userID) => dispatch => {
   axiosWithAuth()
     .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/tendencies`)
     .then(res => {
-      console.log(res);
+      console.log(res)
       dispatch({
         type: constants.GET_TENDENCIES,
         payload: res.data
@@ -45,32 +45,16 @@ export const tendenciesAction = (userID) => dispatch => {
 };
 
 export const detailCardAction = userId => dispatch => {
-  // axiosWithAuth()
-  //   .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userId}/profile`)
-  //   .then(res => {
-  //     console.log(res)
-  //     dispatch({
-  //       type: constants.DETAILCARD_CONSTANT,
-  //       payload: res.data
-  //     });
-  //   })
-  //   .catch(err => console.log(err));
-  // console.log(userId);
-  const detailsDemoData = {
-    avatarUrl: 'https://avatars1.githubusercontent.com/u/13441400?v=4',
-    login: 'TinySquid',
-    name: 'Mike Nunes',
-    bio: 'Currently in the Lambda School WEB24 Track - Full Stack Development.',
-    location: 'California',
-    url: 'https://github.com/TinySquid',
-    repositories: 95,
-    // commits: 487
-  }
-
-  dispatch({
-    type: constants.DETAILCARD_CONSTANT,
-    payload: detailsDemoData
-  });
+  axiosWithAuth()
+    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userId}/profile`)
+    .then(res => {
+      console.log(res)
+      dispatch({
+        type: constants.DETAILCARD_CONSTANT,
+        payload: res.data
+      });
+    })
+    .catch(err => console.log(err));
 };
 
 export const searchUser = queryData => dispatch => {

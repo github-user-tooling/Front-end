@@ -8,7 +8,8 @@ const constants = {
   GET_SEARCH_QUERY: 'data:search-query',
   LOGIN_USER: 'user:login-user',
   LOGOUT_USER: 'user:logout-user',
-  GET_TENDENCIES: 'data:get-tendencies-data'
+  GET_TENDENCIES: 'data:get-tendencies-data',
+  TOGGLE_MODAL: 'user:toggle-modal'
 };
 
 export default constants;
