@@ -4,7 +4,8 @@ import { axiosWithAuth } from '../../components/utils/axiosWithAuth';
 
 // For user on dashboard
 export const dashboardData = () => dispatch => {
-  axios
+
+  axiosWithAuth()
     .get("https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/dashboard", {
       withCredentials: true
     })
