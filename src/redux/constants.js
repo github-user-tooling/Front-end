@@ -8,13 +8,14 @@ const constants = {
   GET_SEARCH_QUERY: 'data:search-query',
   LOGIN_USER: 'user:login-user',
   LOGOUT_USER: 'user:logout-user',
+  GET_FOLLOWERS: 'data:get-followers',
   GET_TENDENCIES: 'data:get-tendencies-data',
   TOGGLE_MODAL: 'user:toggle-modal',
   GET_NOTES: 'user:get-notes',
   ADD_NOTE: 'user:add-note',
   EDIT_NOTE: 'user:edit-note',
   DELETE_NOTE: 'user:delete-note',
-
+  UNFOLLOW_USER: 'data:unfollow_user',
   TRIGGER_NOTES_SEARCH: 'search:trigger-search-notes',
   SET_NOTES_SEARCH: 'search:set-search-notes',
   FILTER_NOTES: 'search:filter-search-notes'

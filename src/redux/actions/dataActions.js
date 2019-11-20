@@ -51,6 +51,19 @@ export const redirectDashboardAction = () => dispatch => {
   })
 }
 
+export const getFollowers = () => dispatch => {
+  axiosWithAuth()
+    .get('https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/following')
+    .then(res => {
+      dispatch({
+        type: constants.GET_FOLLOWERS,
+        payload: res.data
+      });
+    })
+    .catch(err => console.log(err));
+
+}
+
 export const detailCardAction = userID => dispatch => {
   axiosWithAuth()
     .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/profile`)
@@ -107,3 +120,17 @@ export const favoriteUser = userId => dispatch => {
   //     console.log(err.response);
   //   });
 };
+
+///:id - Unfollow a specific user from the current user.
+export const unfollowUser = userID => dispatch => {
+  axiosWithAuth()
+    .post(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/unfollow/${userID}`, {})
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: constants.UNFOLLOW_USER,
+        payload: userID
+      });
+    })
+    .catch(err => console.log(err));
+}
