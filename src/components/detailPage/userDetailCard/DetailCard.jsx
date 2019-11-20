@@ -8,7 +8,7 @@ import Chart from '../chart/Chart';
 import Tendencies from '../tendenciesCard/TendenciesCard';
 import NotesModal from '../notesModal/NotesModal';
 // Actions
-import { detailCardAction } from "../../../redux/actions/dataActions";
+import { detailCardAction, favoriteUser, getFollowers, unfollowUser } from "../../../redux/actions/dataActions";
 import { toggleModal } from "../../../redux/actions/userActions";
 
 import { textEmoji } from 'markdown-to-text-emoji';
@@ -18,9 +18,21 @@ function DetailsCard(props) {
     props.detailCardAction(props.userID);
   }, []);
 
+  const handleFollow = userID => {
+    props.favoriteUser(userID);
+    props.getFollowers();
+  }
+
+  const handleUnfollow = userID => {
+    props.unfollowUser(userID);
+    // props.getFollowers();
+  }
+
   const emojify = () => textEmoji(props.userDetailData.bio);
 
   if (!props.userDetailData) return <div>loading...</div>;
+
+  console.log('YEEEE', props.whoImFollowing);
 
   return (
     <>
@@ -49,8 +61,14 @@ function DetailsCard(props) {
           <Chart userID={props.userID} username={props.userDetailData.login} />
         </div>
         <div className="buttons">
-          <button className="btn-notes" onClick={() => props.toggleModal(props.modalIsOpen)}>Notes</button>
-          <button className="btn-unfollow">Unfollow</button>
+          {props.whoImFollowing.findIndex(user => user.login === props.userDetailData.login) !== -1 ?
+            <>
+              <button className="btn-notes" onClick={() => props.toggleModal(props.modalIsOpen)}>Notes</button>
+              <button className="btn-unfollow" onClick={() => handleUnfollow(props.userID)}>Unfollow</button>
+            </>
+            :
+            <button className="btn-follow" onClick={() => handleFollow(props.userID)}>Follow</button>
+          }
         </div>
       </div>
     </>
@@ -58,14 +76,18 @@ function DetailsCard(props) {
 }
 
 const mapStateToProps = state => ({
+  userID: state.Data.userID,
   modalIsOpen: state.User.modalIsOpen,
   userDetailData: state.Data.userDetailData,
-  userID: state.Data.userID
+  whoImFollowing: state.Data.dashboardData.following
 });
 
 const mapActionsToProps = {
   detailCardAction,
-  toggleModal
+  toggleModal,
+  favoriteUser,
+  getFollowers,
+  unfollowUser
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(DetailsCard);
