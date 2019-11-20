@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // Redux
 import { connect } from "react-redux";
 // Styles
@@ -18,10 +18,41 @@ const override = css`
 `;
 
 function FollowingContainer(props) {
+  const { followingSearch, setFollowingSearch } = useState({
+    searchData: [],
+    query: ""
+  });
+
+  useEffect(() => {
+    // setFollowingSearch({
+    //   ...followingSearch,
+    //   searchData: props.searchResults.filter(u => {
+    //     return !props.existingFollowers.some(f => f.login === u.login);
+    //   })
+    // });
+  }, []);
+
+  const handleChange = e => {
+    setFollowingSearch({
+      ...followingSearch,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
+
   return (
     <div id="dashboard-fc">
       <h1>Following</h1>
       <div id="fc__following-wrapper">
+        <div style={{display: 'none'}}>
+          <form onSubmit={handleSubmit}>
+            <input onChange={handleChange} type="text" name="query" />
+            <button type="submit" hidden></button>
+          </form>
+        </div>
         {props.followerData ? (
           props.followerData.map((user, key) => (
             <FollowingCard user={user} history={props.history} key={key} />

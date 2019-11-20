@@ -8,20 +8,28 @@ import Dashboard from "./pages/dashboard/Dashboard";
 // Components
 import Login from "./pages/login/Login";
 import UserDetails from "./pages/userDetails/UserDetails";
-
-
+// React Page Transitions
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <PrivateRoute path="/details" component={UserDetails} />
-          <PrivateRoute path="/dashboard" component={Dashboard} />
-          <PrivateRoute path="/details" component={UserDetails} />
-          <PrivateRoute exact path="/" component={Dashboard} />
-        </Switch>
+        <Route
+          render={({ location }) => (
+            <TransitionGroup>
+              <CSSTransition key={location.key} timeout={1000} classNames="fade">
+                <Switch  location={location}>
+                  <Route path="/login" component={Login} />
+                  <PrivateRoute path="/details" component={UserDetails} />
+                  <PrivateRoute path="/dashboard" component={Dashboard} />
+                  <PrivateRoute path="/details" component={UserDetails} />
+                  <PrivateRoute exact path="/" component={Dashboard} />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        />
       </Router>
     </div>
   );

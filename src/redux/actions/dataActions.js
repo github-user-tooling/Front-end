@@ -105,20 +105,20 @@ export const getUserDetails = userId => dispatch => {
 // Used to favorite the user from dashboard search
 export const favoriteUser = userId => dispatch => {
   console.log(userId);
-  // axios
-  //   .post(
-  //     `https://staging-master-5ton9t2hfmasnxc.herokuapp.com/follow/${userId}`,
-  //     {},
-  //     {
-  //       withCredentials: true
-  //     }
-  //   )
-  //   .then(res => {
-  //     console.log(res.data);
-  //   })
-  //   .catch(err => {
-  //     console.log(err.response);
-  //   });
+  axios
+    .post(
+      `https://staging-master-5ton9t2hfmasnxc.herokuapp.com/follow/${userId}`,
+      {},
+      {
+        withCredentials: true
+      }
+    )
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(err.response);
+    });
 };
 
 ///:id - Unfollow a specific user from the current user.
