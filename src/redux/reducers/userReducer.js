@@ -33,15 +33,17 @@ const userReducer = (state = initialState, { type, payload }) => {
         ...state,
         notes: payload
       }
+
     case constants.ADD_NOTE:
       return {
         ...state,
         notes: [...state.notes, payload]
       }
+
     case constants.EDIT_NOTE:
       return {
         ...state,
-        notes: state.notes.map((note, id) => {
+        notes: state.notes.map(note => {
           if (note.id === payload.id) {
             return payload;
           } else {
@@ -49,6 +51,7 @@ const userReducer = (state = initialState, { type, payload }) => {
           }
         })
       }
+
     case constants.DELETE_NOTE:
       return {
         ...state,
