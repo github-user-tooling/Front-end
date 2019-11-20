@@ -11,11 +11,14 @@ import NotesModal from '../notesModal/NotesModal';
 import { detailCardAction } from "../../../redux/actions/dataActions";
 import { toggleModal } from "../../../redux/actions/userActions";
 
-function DetailsCard(props) {
+import { textEmoji } from 'markdown-to-text-emoji';
 
+function DetailsCard(props) {
   useEffect(() => {
     props.detailCardAction(props.userID);
   }, []);
+
+  const emojify = () => textEmoji(props.userDetailData.bio);
 
   if (!props.userDetailData) return <div>loading...</div>;
 
@@ -35,10 +38,10 @@ function DetailsCard(props) {
               {props.userDetailData.location ? <li>Location: {props.userDetailData.location}</li> : null}
               <li>Repos: {props.userDetailData.repoCount}</li>
               <li>Profile : <a href={props.userDetailData.url} target="_blank" rel="noopener noreferrer">{props.userDetailData.url}</a></li>
-              {props.userDetailData.bio ? <li>Bio: {props.userDetailData.bio}</li> : null}
+              {props.userDetailData.bio ? <li>{emojify()}</li> : null}
             </ul>
             <div className="details-tendencies">
-            <Tendencies userID={props.userID}/>
+              <Tendencies userID={props.userID} />
             </div>
           </div>
         </div>
