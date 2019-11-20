@@ -14,6 +14,10 @@ const constants = {
   ADD_NOTE: 'user:add-note',
   EDIT_NOTE: 'user:edit-note',
   DELETE_NOTE: 'user:delete-note',
+
+  TRIGGER_NOTES_SEARCH: 'search:trigger-search-notes',
+  SET_NOTES_SEARCH: 'search:set-search-notes',
+  FILTER_NOTES: 'search:filter-search-notes'
 };
 
 export default constants;

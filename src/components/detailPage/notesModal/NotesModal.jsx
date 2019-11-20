@@ -9,6 +9,7 @@ import EditNote from './EditNote';
 import Note from './Note';
 // Actions
 import { toggleModal, getNotes } from "../../../redux/actions/userActions";
+import { filterNotes, setNotesSearch, triggerNotesSearch } from "../../../redux/actions/searchActions";
 // Modal
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
@@ -16,9 +17,9 @@ function NotesModal(props) {
   const [view, setView] = useState('view');
   const [noteToEdit, setNoteToEdit] = useState(null);
 
-  const [handleSearch, setHandleSearch] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
-  const [notesList, setNotesList] = useState([]);
+  // const [handleSearch, setHandleSearch] = useState(false);
+  // const [searchInput, setSearchInput] = useState("");
+  // const [notesList, setNotesList] = useState([]);
 
   useEffect(() => {
     props.getNotes(props.userID)
@@ -26,7 +27,8 @@ function NotesModal(props) {
   }, []);
 
   useEffect(() => {
-    setNotesList(props.notes);
+    // setNotesList(props.notes);
+    props.filterNotes(props.notes);
   }, [props.notes]);
 
   const editNoteHandler = note => {
@@ -44,22 +46,22 @@ function NotesModal(props) {
   }
 
   const handleSearching = e => {
-    setSearchInput(e.target.value);
+    props.setNotesSearch(e.target.value);
   }
 
   const checkKeyPress = e => {
     if(e.key === "Enter") {
-      setHandleSearch(!handleSearch);
+      props.triggerNotesSearch(!props.trigger);
     }
   }
 
   useEffect(() => {
-    setNotesList(props.notes.filter(e => {
+    props.filterNotes(props.notes.filter(e => {
 
-      return e.title.toLowerCase().includes(searchInput.toLowerCase());
+      return e.title.toLowerCase().includes(props.searchInput.toLowerCase());
     }));
-    console.log(notesList, "Notes List with [searchInput]"); // only updates console.log after first re-render
-  }, [handleSearch])
+
+  }, [props.trigger])
 
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggleModal}>
@@ -82,12 +84,12 @@ function NotesModal(props) {
       <ModalBody>
         {
           view !== 'add'
-          ? <input placeholder="Search Notes" onKeyPress={checkKeyPress} onChange={handleSearching} value={searchInput} />
+          ? <input placeholder="Search Notes" onKeyPress={checkKeyPress} onChange={handleSearching} value={props.searchInput} />
           : null
         }
       
         {console.log(props.notes)}
-        {console.log(notesList)}
+        {console.log(props.notesList)}
 
         {/* {
         notesList.length > 0
@@ -101,7 +103,7 @@ function NotesModal(props) {
         {/* Mike's version below, keep in case I break */}
         {
         view === 'view' ? 
-        notesList.map((note, idx) => (
+        props.notesList.map((note, idx) => (
           <Note key={idx} note={note} edit={editNoteHandler} />
         )) 
 
@@ -119,12 +121,21 @@ function NotesModal(props) {
 const mapStateToProps = state => ({
   isOpen: state.User.modalIsOpen,
   notes: state.User.notes,
-  userID: state.Data.userID
+  userID: state.Data.userID,
+
+  trigger: state.Search.noteSearchTrigger,
+  searchInput: state.Search.notesSearchInput,
+  notesList: state.Search.notesList
+
 });
 
 const mapActionsToProps = {
   toggleModal,
-  getNotes
+  getNotes,
+
+  triggerNotesSearch,
+  setNotesSearch,
+  filterNotes
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(NotesModal);
