@@ -41,3 +41,25 @@
     -webkit-box-shadow: inset 0 0 6px green;
   }
 }
+
+@media (max-device-width: 927px) {
+  #dashboard-fc {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (max-device-width: 810px) {
+  #dashboard-fc {
+    width: 80vw;
+    margin: 20px auto;
+    height: 60vh;
+  }
+}
+
+@media (max-device-width: 544px) {
+  #dashboard-fc {
+    width: 90vw;
+  }
+}

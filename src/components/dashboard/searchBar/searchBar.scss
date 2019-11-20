@@ -22,3 +22,25 @@
     }
   }
 }
+
+@media (max-device-width: 927px) {
+  #dashboard-searchBar {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (max-device-width: 810px) {
+  #dashboard-searchBar {
+    margin: 3vh 0 2vh;
+  }
+}
+
+@media (max-device-width: 438px) {
+  #dashboard-searchBar {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+}
