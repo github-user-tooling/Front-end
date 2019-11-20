@@ -1,7 +1,9 @@
 import React from 'react';
-
+//Redux
 import { connect } from "react-redux";
-
+//Styles
+import './Note.scss';
+//Actions
 import { deleteNote } from "../../../redux/actions/userActions";
 
 const Note = (props) => {
