@@ -13,8 +13,7 @@ import { toggleModal } from "../../../redux/actions/userActions";
 
 function DetailsCard(props) {
   useEffect(() => {
-    // props.detailCardAction(props.state.userID);
-    props.detailCardAction('MDQ6VXNlcjUzNTM0NjI2');
+    props.detailCardAction(props.userId);
   }, []);
 
   if (!props.userDetailData) return <div>loading...</div>;
@@ -44,7 +43,7 @@ function DetailsCard(props) {
           </div>
         </div>
         <div className="details-chart">
-          <Chart userID={'MDQ6VXNlcjUzNTM0NjI2'} username={props.userDetailData.login} />
+          <Chart userID={props.userId} username={props.userDetailData.login} />
         </div>
         <div className="buttons">
           <button className="btn-notes" onClick={() => props.toggleModal(props.modalIsOpen)}>Notes</button>
@@ -57,7 +56,8 @@ function DetailsCard(props) {
 
 const mapStateToProps = state => ({
   modalIsOpen: state.User.modalIsOpen,
-  userDetailData: state.Data.userDetailData
+  userDetailData: state.Data.userDetailData,
+  userId: state.Data.userID
 });
 
 const mapActionsToProps = {

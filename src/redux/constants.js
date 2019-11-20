@@ -9,7 +9,11 @@ const constants = {
   LOGIN_USER: 'user:login-user',
   LOGOUT_USER: 'user:logout-user',
   GET_TENDENCIES: 'data:get-tendencies-data',
-  TOGGLE_MODAL: 'user:toggle-modal'
+  TOGGLE_MODAL: 'user:toggle-modal',
+  GET_NOTES: 'user:get-notes',
+  ADD_NOTE: 'user:add-note',
+  EDIT_NOTE: 'user:edit-note',
+  DELETE_NOTE: 'user:delete-note',
 };
 
 export default constants;
