@@ -1,18 +1,9 @@
-import React, { useEffect } from 'react'
-// Redux
-import { connect } from "react-redux";
-// Styles
+import React from 'react'
 // Components
 import Nav from "../../components/dashboard/nav/Nav";
 import DetailCard from '../../components/detailPage/userDetailCard/DetailCard';
-//Actions
-import { dashboardData } from "../../redux/actions/dataActions";
 
-function UserDetails(props) {
-  useEffect(() => {
-    props.dashboardData();
-  }, []);
-
+function UserDetails() {
   return (
     <div>
       <Nav />
@@ -21,12 +12,4 @@ function UserDetails(props) {
   )
 }
 
-const mapStateToProps = state => ({
-  state
-});
-
-const mapActionsToProps = {
-  dashboardData
-};
-
-export default connect(mapStateToProps, mapActionsToProps)(UserDetails);
+export default UserDetails;
