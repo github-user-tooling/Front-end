@@ -1,11 +1,12 @@
 #dashboard-search {
+  z-index: 2;
   height: 80vh;
   width: 50vw;
   margin: 0 auto;
 }
 
 #search__results {
-  background: #d6d6d6;
+  background: #d6d6d6dc;
   box-shadow: 2px 2px 4px #111;
   height: 60vh;
   padding: 10px;

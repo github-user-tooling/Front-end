@@ -9,6 +9,8 @@ import FollowingContainer from "../../components/dashboard/followingContainer/Fo
 import SearchContainer from "../../components/dashboard/searchContainer/SearchContainer";
 // Actions
 import { dashboardData } from "../../redux/actions/dataActions";
+// Bg
+import bg from "../../images/mainBg.svg";
 
 function Dashboard(props) {
   useEffect(() => {
@@ -16,11 +18,14 @@ function Dashboard(props) {
   }, []);
 
   return (
-    <div>
+    <div id="dashboard">
       <Nav />
+      <div id="background-img">
+        <img src={bg} alt="background image" />
+      </div>
       <div id="dashboard-main">
         <FollowingContainer history={props.history} />
-        <SearchContainer  history={props.history}/>
+        <SearchContainer history={props.history} />
       </div>
     </div>
   );

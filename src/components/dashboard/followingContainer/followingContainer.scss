@@ -1,5 +1,6 @@
 #dashboard-fc {
-  background: #d6d6d6;
+  z-index: 2;
+  background: #d6d6d6dc;
   box-shadow: 2px 2px 4px #111;
   height: 80vh;
   width: 400px;
@@ -9,7 +10,7 @@
     text-align: center;
     margin: 20px 0;
     font-weight: 500;
-    font-family: 'Rubik', sans-serif;
+    font-family: "Rubik", sans-serif;
   }
 }
 
@@ -17,9 +18,9 @@
   margin: 50% auto;
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   width: 50%;
-  height: 20%; 
+  height: 20%;
 }
 
 #fc__following-wrapper {
