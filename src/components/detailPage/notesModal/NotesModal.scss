@@ -1,0 +1,16 @@
+.modal-title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-body {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+}

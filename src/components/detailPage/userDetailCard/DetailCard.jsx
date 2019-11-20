@@ -21,7 +21,6 @@ function DetailsCard(props) {
 
   return (
     <>
-      {/* {props.modalIsOpen ? <Modal /> : null} */}
       <NotesModal />
       <div className="details-card">
         <div className="details-content">

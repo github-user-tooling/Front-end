@@ -4,7 +4,8 @@ const initialState = {
   userLogin: {
     isLogged: null
   },
-  modalIsOpen: false
+  modalIsOpen: false,
+  notes: []
 };
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -25,6 +26,33 @@ const userReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         modalIsOpen: !state.modalIsOpen
+      }
+
+    case constants.GET_NOTES:
+      return {
+        ...state,
+        notes: payload
+      }
+    case constants.ADD_NOTE:
+      return {
+        ...state,
+        notes: [...state.notes, payload]
+      }
+    case constants.EDIT_NOTE:
+      return {
+        ...state,
+        notes: state.notes.map((note, id) => {
+          if (note.id === payload.id) {
+            return payload;
+          } else {
+            return note;
+          }
+        })
+      }
+    case constants.DELETE_NOTE:
+      return {
+        ...state,
+        notes: state.notes.filter(note => note.id !== payload.id)
       }
 
     default:
