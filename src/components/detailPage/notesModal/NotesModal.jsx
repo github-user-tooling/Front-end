@@ -15,6 +15,8 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 function NotesModal(props) {
   const [view, setView] = useState('view');
   const [noteToEdit, setNoteToEdit] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
+  const [notesList, setNotesList] = useState([]);
 
   useEffect(() => {
     props.getNotes(props.userID)
@@ -34,9 +36,28 @@ function NotesModal(props) {
     }
   }
 
+  const handleSearching = e => {
+    setSearchInput(e.target.value);
+  }
+
+  useEffect(() => {
+    setNotesList(props.notes.filter(e => {
+
+      return e.title.toLowerCase().includes(searchInput.toLowerCase());
+    }));
+    console.log(notesList, "Notes List");
+  }, [searchInput])
+
+  useEffect(() => {
+    
+  }, [notesList])
+
+
+
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggleModal}>
       <ModalHeader toggle={props.toggleModal}>
+        
         {view === 'add' ?
           <>
             <span>Add Note</span>
@@ -45,11 +66,21 @@ function NotesModal(props) {
           :
           <>
             <span>Notes</span>
+            
             <button onClick={changeView}>Add Note</button>
           </>}
+
+          
       </ModalHeader>
       <ModalBody>
+        {
+          view !== 'add'
+          ? <input placeholder="Search Notes" onChange={handleSearching} value={searchInput} />
+          : null
+        }
+      
         {console.log(props.notes)}
+
         {view === 'view' ? props.notes.map((note, idx) => (
           <Note key={idx} note={note} edit={editNoteHandler} />
         )) : view === 'add' ? <AddNote userID={props.userID} changeView={changeView} /> :
