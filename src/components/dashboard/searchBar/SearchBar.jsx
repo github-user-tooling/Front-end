@@ -6,6 +6,16 @@ import { connect } from "react-redux";
 // Actions
 import { searchUser } from "../../../redux/actions/dataActions";
 
+import { css } from "@emotion/core";
+// First way to import
+import { PacmanLoader } from "react-spinners";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: blue;
+`;
+
 function SearchBar(props) {
   let [searchBar, setSearchBar] = useState({
     query: ""
@@ -27,13 +37,22 @@ function SearchBar(props) {
     <div id="dashboard-searchBar">
       <h1>Git Search</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="query"
-          value={searchBar.query}
-          onChange={handleChange}
-          placeholder="Enter Username"
-        />
+        {props.dataaCheck ? (
+          <input
+            type="text"
+            name="query"
+            value={searchBar.query}
+            onChange={handleChange}
+            placeholder="Enter Username"
+          />
+        ) : (
+          <PacmanLoader
+            css={override}
+            sizeUnit={"px"}
+            size={15}
+            color={"#25c425"}
+          />
+        )}
 
         <button type="submit" hidden></button>
       </form>
@@ -42,7 +61,7 @@ function SearchBar(props) {
 }
 
 const mapState = state => ({
-  state
+  dataCheck: state.Data.dashboardData.following
 });
 
 const mapProps = {
