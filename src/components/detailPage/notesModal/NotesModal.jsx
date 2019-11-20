@@ -20,7 +20,12 @@ function NotesModal(props) {
 
   useEffect(() => {
     props.getNotes(props.userID)
+    console.log(props.notes);
   }, []);
+
+  useEffect(() => {
+    setNotesList(props.notes);
+  }, [props.notes]);
 
   const editNoteHandler = note => {
     setView('edit');
@@ -45,14 +50,8 @@ function NotesModal(props) {
 
       return e.title.toLowerCase().includes(searchInput.toLowerCase());
     }));
-    console.log(notesList, "Notes List");
+    console.log(notesList, "Notes List with [searchInput]"); // only updates console.log after first re-render
   }, [searchInput])
-
-  useEffect(() => {
-    
-  }, [notesList])
-
-
 
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggleModal}>
@@ -80,11 +79,27 @@ function NotesModal(props) {
         }
       
         {console.log(props.notes)}
+        {console.log(notesList)}
 
-        {view === 'view' ? props.notes.map((note, idx) => (
+        {/* {
+        notesList.length > 0
+        ? notesList.map((note, idx) => (
           <Note key={idx} note={note} edit={editNoteHandler} />
-        )) : view === 'add' ? <AddNote userID={props.userID} changeView={changeView} /> :
-            <EditNote note={noteToEdit} changeView={changeView} />
+        )) 
+        : view === 'add' ? <AddNote userID={props.userID} changeView={changeView} /> 
+        : <EditNote note={noteToEdit} changeView={changeView} />
+        } */}
+
+        {/* Mike's version below, keep in case I break */}
+        {
+        view === 'view' ? 
+        notesList.map((note, idx) => (
+          <Note key={idx} note={note} edit={editNoteHandler} />
+        )) 
+
+        : view === 'add' ? <AddNote userID={props.userID} changeView={changeView} /> 
+
+        : <EditNote note={noteToEdit} changeView={changeView} />
         }
       </ModalBody>
       <ModalFooter>
