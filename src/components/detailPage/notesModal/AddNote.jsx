@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-
+//Redux
 import { connect } from "react-redux";
-
+//Styles
+import './AddNote.scss';
+//Actions
 import { addNote } from "../../../redux/actions/userActions";
 
 const AddNote = (props) => {
