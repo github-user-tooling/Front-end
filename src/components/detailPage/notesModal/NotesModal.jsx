@@ -37,6 +37,7 @@ function NotesModal(props) {
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggleModal}>
       <ModalHeader toggle={props.toggleModal}>
+        
         {view === 'add' ?
           <>
             <span>Add Note</span>
@@ -45,10 +46,19 @@ function NotesModal(props) {
           :
           <>
             <span>Notes</span>
+            
             <button onClick={changeView}>Add Note</button>
           </>}
+
+          
       </ModalHeader>
       <ModalBody>
+        {
+          view !== 'add'
+          ? <input placeholder="Search Notes" />
+          : null
+        }
+      
         {console.log(props.notes)}
         {view === 'view' ? props.notes.map((note, idx) => (
           <Note key={idx} note={note} edit={editNoteHandler} />
