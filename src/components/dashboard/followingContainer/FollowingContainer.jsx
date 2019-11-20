@@ -7,6 +7,15 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 // Components
 import FollowingCard from "../followingCard/FollowingCard";
+// Loader
+import { css } from "@emotion/core";
+import { PacmanLoader } from "react-spinners";
+
+const override = css`
+  display: block;
+  margin: 50% 0 0 25%;
+  border-color: blue;
+`;
 
 function FollowingContainer(props) {
   return (
@@ -18,12 +27,12 @@ function FollowingContainer(props) {
             <FollowingCard user={user} history={props.history} key={key} />
           ))
         ) : (
-          <div id="loader">
-            <Loader
-              type="Triangle"
-              color="#62D247"
-            />
-          </div>
+          <PacmanLoader
+            css={override}
+            sizeUnit={"px"}
+            size={45}
+            color={"cyan"}
+          />
         )}
       </div>
     </div>
