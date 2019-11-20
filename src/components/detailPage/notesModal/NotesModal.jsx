@@ -17,24 +17,17 @@ function NotesModal(props) {
   const [view, setView] = useState('view');
   const [noteToEdit, setNoteToEdit] = useState(null);
 
-  // const [handleSearch, setHandleSearch] = useState(false);
-  // const [searchInput, setSearchInput] = useState("");
-  // const [notesList, setNotesList] = useState([]);
-
   useEffect(() => {
     props.getNotes(props.userID)
-    console.log(props.notes);
   }, []);
 
   useEffect(() => {
-    // setNotesList(props.notes);
     props.filterNotes(props.notes);
   }, [props.notes]);
 
   const editNoteHandler = note => {
     setView('edit');
     setNoteToEdit(note);
-    console.log('Note to edit:', note);
   }
 
   const changeView = () => {
@@ -87,20 +80,7 @@ function NotesModal(props) {
           ? <input placeholder="Search Notes" onKeyPress={checkKeyPress} onChange={handleSearching} value={props.searchInput} />
           : null
         }
-      
-        {console.log(props.notes)}
-        {console.log(props.notesList)}
 
-        {/* {
-        notesList.length > 0
-        ? notesList.map((note, idx) => (
-          <Note key={idx} note={note} edit={editNoteHandler} />
-        )) 
-        : view === 'add' ? <AddNote userID={props.userID} changeView={changeView} /> 
-        : <EditNote note={noteToEdit} changeView={changeView} />
-        } */}
-
-        {/* Mike's version below, keep in case I break */}
         {
         view === 'view' ? 
         props.notesList.map((note, idx) => (
