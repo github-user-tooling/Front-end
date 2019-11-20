@@ -15,6 +15,8 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 function NotesModal(props) {
   const [view, setView] = useState('view');
   const [noteToEdit, setNoteToEdit] = useState(null);
+
+  const [handleSearch, setHandleSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [notesList, setNotesList] = useState([]);
 
@@ -45,13 +47,19 @@ function NotesModal(props) {
     setSearchInput(e.target.value);
   }
 
+  const checkKeyPress = e => {
+    if(e.key === "Enter") {
+      setHandleSearch(!handleSearch);
+    }
+  }
+
   useEffect(() => {
     setNotesList(props.notes.filter(e => {
 
       return e.title.toLowerCase().includes(searchInput.toLowerCase());
     }));
     console.log(notesList, "Notes List with [searchInput]"); // only updates console.log after first re-render
-  }, [searchInput])
+  }, [handleSearch])
 
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggleModal}>
@@ -74,7 +82,7 @@ function NotesModal(props) {
       <ModalBody>
         {
           view !== 'add'
-          ? <input placeholder="Search Notes" onChange={handleSearching} value={searchInput} />
+          ? <input placeholder="Search Notes" onKeyPress={checkKeyPress} onChange={handleSearching} value={searchInput} />
           : null
         }
       
