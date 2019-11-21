@@ -14,3 +14,40 @@
 textarea {
   width: 100%;
 }
+
+.add-notes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: .2rem;
+  
+  input {
+    width: 100%;
+  }
+}
+
+.fancy-boi {
+  height: 2.5rem;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  background-color: #3ad346;
+  transition: all 100ms ease-in-out;
+
+  &:hover {
+    box-shadow: inset 0 0 20px 4px rgba(56, 161, 35, 0.8);
+  }
+}
+
+.deletey-boi {
+  height: 2.5rem;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  transition: all 100ms ease-in-out;
+  background: #d33a3a;
+
+    &:hover {
+      box-shadow: inset 0 0 20px 4px rgba(161, 35, 35, 0.8);
+    }
+}

@@ -55,16 +55,20 @@ function DetailsCard(props) {
         <div className="details-chart">
           <Chart userID={props.userID} username={props.userDetailData.login} />
         </div>
-        <div className="buttons">
-          {props.whoImFollowing && props.whoImFollowing.findIndex(user => user.login === props.userDetailData.login) !== -1 ?
-            <>
-              <button className="btn-notes" onClick={() => props.toggleModal(props.modalIsOpen)}>Notes</button>
-              <button className="btn-unfollow" onClick={() => handleUnfollow(props.userID)}>Unfollow</button>
-            </>
-            :
-            <button className="btn-follow" onClick={() => handleFollow(props.userDetailData)}>Follow</button>
-          }
-        </div>
+        {props.dashboardData.hasOwnProperty('user') ? props.dashboardData.user.id !== props.userID ?
+          //User is NOT myself
+          <div className="buttons">
+            {props.whoImFollowing && props.whoImFollowing.findIndex(user => user.login === props.userDetailData.login) !== -1 ?
+              //User is a follower
+              <>
+                <button className="btn-notes" onClick={() => props.toggleModal(props.modalIsOpen)}>Notes</button>
+                <button className="btn-unfollow" onClick={() => handleUnfollow(props.userID)}>Unfollow</button>
+              </>
+              : //User is NOT a follower
+              <button className="btn-follow" onClick={() => handleFollow(props.userDetailData)}>Follow</button>
+            }
+          </div> : null : null
+        }
       </div>
     </>
   );
@@ -72,6 +76,7 @@ function DetailsCard(props) {
 
 const mapStateToProps = state => ({
   userID: state.Data.userID,
+  dashboardData: state.Data.dashboardData,
   modalIsOpen: state.User.modalIsOpen,
   userDetailData: state.Data.userDetailData,
   whoImFollowing: state.Data.dashboardData.following
