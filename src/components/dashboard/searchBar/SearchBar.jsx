@@ -26,9 +26,8 @@ function SearchBar(props) {
   return (
     <div id="dashboard-searchBar">
       <h1>Git Search</h1>
-      <form onSubmit={handleSubmit}>
-        {/* props.dataCheck */}
-        {true ? (
+      <form onSubmit={handleSubmit}> 
+        {props.dataCheck ? (
           <input
             type="text"
             name="query"
