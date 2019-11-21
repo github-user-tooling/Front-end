@@ -1,7 +1,6 @@
 #dashboard {
   background: #ebebeb;
   z-index: 1;
-  animation: strobe 10ms steps(1, end) infinite;
   min-height: 100vh;
 }
 
@@ -26,12 +25,6 @@
   }
 }
 
-@keyframes strobe {
-  50% {
-    background: black;
-    color: white;
-  }
-}
 
 @media (max-device-width: 810px) {
   #dashboard-main {

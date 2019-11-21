@@ -18,7 +18,7 @@ function NotesModal(props) {
   const [noteToEdit, setNoteToEdit] = useState(null);
 
   useEffect(() => {
-    props.getNotes(props.userID)
+    if (props.isOpen) props.getNotes(props.userID);
   }, []);
 
   useEffect(() => {
@@ -42,12 +42,6 @@ function NotesModal(props) {
     props.setNotesSearch(e.target.value);
   }
 
-  const checkKeyPress = e => {
-    if(e.key === "Enter") {
-      props.triggerNotesSearch(!props.trigger);
-    }
-  }
-
   const checkSubmit = e => {
     props.triggerNotesSearch(!props.trigger);
   }
@@ -63,7 +57,7 @@ function NotesModal(props) {
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggleModal}>
       <ModalHeader toggle={props.toggleModal}>
-        
+
         {view === 'add' ?
           <>
             <span>Add Note</span>
@@ -72,28 +66,30 @@ function NotesModal(props) {
           :
           <>
             <span>Notes</span>
-            
+
             <button onClick={changeView}>Add Note</button>
           </>}
 
-          
+
       </ModalHeader>
       <ModalBody>
         {
           view !== 'add'
-          ? <form onSubmit={checkSubmit}><input placeholder="Search Notes" onChange={handleSearching} value={props.searchInput} /></form>
+          ? <form onSubmit={checkSubmit}>
+              <input placeholder="Search Notes" onChange={handleSearching} value={props.searchInput} />
+            </form>
           : null
         }
 
         {
-        view === 'view' ? 
-        props.notesList.map((note, idx) => (
-          <Note key={idx} note={note} edit={editNoteHandler} />
-        )) 
+          view === 'view' ?
+            props.notesList.map((note, idx) => (
+              <Note key={idx} note={note} edit={editNoteHandler} />
+            ))
 
-        : view === 'add' ? <AddNote userID={props.userID} changeView={changeView} /> 
+            : view === 'add' ? <AddNote userID={props.userID} changeView={changeView} />
 
-        : <EditNote note={noteToEdit} changeView={changeView} />
+              : <EditNote note={noteToEdit} changeView={changeView} />
         }
       </ModalBody>
       <ModalFooter>
