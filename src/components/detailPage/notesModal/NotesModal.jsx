@@ -17,7 +17,7 @@ function NotesModal(props) {
   const [noteToEdit, setNoteToEdit] = useState(null);
 
   useEffect(() => {
-    props.getNotes(props.userID)
+    if (props.isOpen) props.getNotes(props.userID);
   }, []);
 
   const editNoteHandler = note => {
@@ -49,7 +49,7 @@ function NotesModal(props) {
           </>}
       </ModalHeader>
       <ModalBody>
-        {console.log(props.notes)}
+        {/* {console.log(props.notes)} */}
         {view === 'view' ? props.notes.map((note, idx) => (
           <Note key={idx} note={note} edit={editNoteHandler} />
         )) : view === 'add' ? <AddNote userID={props.userID} changeView={changeView} /> :
