@@ -27,7 +27,7 @@ function DetailsCard(props) {
 
   const emojify = () => textEmoji(props.userDetailData.bio);
 
-  if (!props.userDetailData || !props.whoImFollowing && props.userDetailData) return <div>loading...</div>;
+  if (!props.userDetailData) return <div>loading...</div>;
 
   return (
     <>
@@ -56,7 +56,7 @@ function DetailsCard(props) {
           <Chart userID={props.userID} username={props.userDetailData.login} />
         </div>
         <div className="buttons">
-          {props.whoImFollowing.findIndex(user => user.login === props.userDetailData.login) !== -1 ?
+          {props.whoImFollowing && props.whoImFollowing.findIndex(user => user.login === props.userDetailData.login) !== -1 ?
             <>
               <button className="btn-notes" onClick={() => props.toggleModal(props.modalIsOpen)}>Notes</button>
               <button className="btn-unfollow" onClick={() => handleUnfollow(props.userID)}>Unfollow</button>
