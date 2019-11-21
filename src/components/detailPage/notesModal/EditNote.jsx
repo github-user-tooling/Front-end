@@ -7,7 +7,6 @@ import './EditNote.scss';
 import { editNote } from "../../../redux/actions/userActions";
 
 const EditNote = (props) => {
-  console.log('EditNote ID', props.note.id);
   const [inputs, setInputs] = useState({
     id: '',
     title: '',
@@ -28,9 +27,8 @@ const EditNote = (props) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('To Submit', inputs);
     props.editNote(inputs);
-    props.changeView();
+    props.setModalView('default');
   }
 
   return (

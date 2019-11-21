@@ -8,13 +8,12 @@ import AddNote from './AddNote';
 import EditNote from './EditNote';
 import Note from './Note';
 // Actions
-import { toggleModal, getNotes } from "../../../redux/actions/userActions";
+import { toggleModal, setModalView, getNotes } from "../../../redux/actions/userActions";
 import { filterNotes, setNotesSearch, triggerNotesSearch } from "../../../redux/actions/searchActions";
 // Modal
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 function NotesModal(props) {
-  const [view, setView] = useState('view');
   const [noteToEdit, setNoteToEdit] = useState(null);
 
   useEffect(() => {
@@ -26,16 +25,8 @@ function NotesModal(props) {
   }, [props.notes]);
 
   const editNoteHandler = note => {
-    setView('edit');
+    props.setModalView('edit');
     setNoteToEdit(note);
-  }
-
-  const changeView = () => {
-    if (view === 'view') {
-      setView('add');
-    } else {
-      setView('view');
-    }
   }
 
   const handleSearching = e => {
@@ -47,49 +38,50 @@ function NotesModal(props) {
   }
 
   useEffect(() => {
-    props.filterNotes(props.notes.filter(e => {
-
-      return e.title.toLowerCase().includes(props.searchInput.toLowerCase());
-    }));
-
-  }, [props.trigger])
+    props.filterNotes(props.notes.filter(e => e.title.toLowerCase().includes(props.searchInput.toLowerCase())));
+  }, [props.trigger]);
 
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggleModal}>
       <ModalHeader toggle={props.toggleModal}>
-
-        {view === 'add' ?
-          <>
-            <span>Add Note</span>
-            <button onClick={changeView} className="fancy-boi">View Notes</button>
-          </>
-          :
+        {props.modalView === 'default' ?
           <>
             <span>Notes</span>
-
-            <button onClick={changeView} className="fancy-boi">Add Note</button>
-          </>}
-
-
-      </ModalHeader>
-      <ModalBody>
-        {
-          view !== 'add'
-          ? <form onSubmit={checkSubmit}>
-              <input placeholder="Search Notes" onChange={handleSearching} value={props.searchInput} />
-            </form>
-          : null
+            <button onClick={() => props.setModalView('add')} className="fancy-boi">Add Note</button>
+          </> : null
         }
 
-        {
-          view === 'view' ?
-            props.notesList.map((note, idx) => (
-              <Note key={idx} note={note} edit={editNoteHandler} />
-            ))
+        {props.modalView === 'add' ?
+          <>
+            <span>Add Note</span>
+            <button onClick={() => props.setModalView('default')} className="fancy-boi">View Notes</button>
+          </> : null
+        }
 
-            : view === 'add' ? <AddNote userID={props.userID} changeView={changeView} />
+        {props.modalView === 'edit' ?
+          <>
+            <span>Edit Note</span>
+            <button onClick={() => props.setModalView('default')} className="fancy-boi">View Notes</button>
+          </> : null
+        }
+      </ModalHeader>
+      <ModalBody>
+        {props.modalView === 'default' ?
+          <>
+            <form onSubmit={checkSubmit}>
+              <input placeholder="Search Notes" onChange={handleSearching} value={props.searchInput} />
+            </form>
 
-              : <EditNote note={noteToEdit} changeView={changeView} />
+            {props.notesList.map((note, idx) => <Note key={idx} note={note} edit={editNoteHandler} />)}
+          </> : null
+        }
+
+        {props.modalView === 'add' ?
+          <AddNote userID={props.userID} setModalView={props.setModalView} /> : null
+        }
+
+        {props.modalView === 'edit' ?
+          <EditNote note={noteToEdit} setModalView={props.setModalView} /> : null
         }
       </ModalBody>
       <ModalFooter>
@@ -99,9 +91,10 @@ function NotesModal(props) {
 }
 
 const mapStateToProps = state => ({
-  isOpen: state.User.modalIsOpen,
-  notes: state.User.notes,
   userID: state.Data.userID,
+  isOpen: state.User.notesModal.isOpen,
+  modalView: state.User.notesModal.view,
+  notes: state.User.notesModal.notes,
 
   trigger: state.Search.noteSearchTrigger,
   searchInput: state.Search.notesSearchInput,
@@ -111,6 +104,7 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = {
   toggleModal,
+  setModalView,
   getNotes,
 
   triggerNotesSearch,

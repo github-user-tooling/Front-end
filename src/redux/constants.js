@@ -11,6 +11,7 @@ const constants = {
   GET_FOLLOWERS: 'data:get-followers',
   GET_TENDENCIES: 'data:get-tendencies-data',
   TOGGLE_MODAL: 'user:toggle-modal',
+  SET_MODAL_VIEW: 'user:set-modal-view',
   GET_NOTES: 'user:get-notes',
   ADD_NOTE: 'user:add-note',
   EDIT_NOTE: 'user:edit-note',
@@ -21,7 +22,7 @@ const constants = {
   SET_NOTES_SEARCH: 'search:set-search-notes',
   FILTER_NOTES: 'search:filter-search-notes',
   BASE_URL_PROD: "https://git-user-breakdown.herokuapp.com",
-  BASE_URL_DEV: "https://staging-master-5ton9t2hfmasnxc.herokuapp.com" 
+  BASE_URL_DEV: "https://staging-master-5ton9t2hfmasnxc.herokuapp.com"
 };
 
 export default constants;

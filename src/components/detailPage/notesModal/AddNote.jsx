@@ -19,7 +19,7 @@ const AddNote = (props) => {
   const handleSubmit = e => {
     e.preventDefault();
     props.addNote(props.userID, inputs);
-    props.changeView();
+    props.setModalView('default');
   }
 
   return (
