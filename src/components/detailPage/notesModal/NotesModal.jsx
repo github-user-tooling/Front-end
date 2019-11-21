@@ -76,7 +76,7 @@ function NotesModal(props) {
         {
           view !== 'add'
           ? <form onSubmit={checkSubmit}>
-              <input placeholder="Search Notes" onChange={handleSearching} value={props.searchInput} />
+              <input placeholder="Search Notes" onChange={handleSearching} value={props.searchInput} required />
             </form>
           : null
         }
