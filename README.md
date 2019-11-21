@@ -8,3 +8,6 @@
   
 **Packages/Libraries:** 
   *Axios, chart.js, emotion*
+
+
+who and what they did
