@@ -18,19 +18,18 @@ const override = css`
 `;
 
 function FollowingContainer(props) {
-  const { followingSearch, setFollowingSearch } = useState({
+  const [followingSearch, setFollowingSearch] = useState({
     searchData: [],
     query: ""
   });
 
   useEffect(() => {
-    // setFollowingSearch({
-    //   ...followingSearch,
-    //   searchData: props.searchResults.filter(u => {
-    //     return !props.existingFollowers.some(f => f.login === u.login);
-    //   })
-    // });
-  }, []);
+    if (!props.followerData) return; 
+    setFollowingSearch({
+      ...followingSearch,
+      searchData: [...props.followerData]
+    });
+  }, [props.followerData]);
 
   const handleChange = e => {
     setFollowingSearch({
@@ -41,20 +40,36 @@ function FollowingContainer(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (props.followerData) {
+      setFollowingSearch({
+        ...followingSearch,
+        searchData: props.followerData.filter(u => {
+          return u.login
+            .toLowerCase()
+            .includes(followingSearch.query.toLowerCase());
+        })
+      });
+    }
   };
 
   return (
     <div id="dashboard-fc">
       <h1>Following</h1>
       <div id="fc__following-wrapper">
-        <div style={{display: 'none'}}>
+        <div id="followingFilter-wrapper">
           <form onSubmit={handleSubmit}>
-            <input onChange={handleChange} type="text" name="query" />
+            <input
+              autoComplete={false}
+              onChange={handleChange}
+              value={followingSearch.query}
+              type="text"
+              name="query"
+            />
             <button type="submit" hidden></button>
           </form>
         </div>
         {props.followerData ? (
-          props.followerData.map((user, key) => (
+          followingSearch.searchData.map((user, key) => (
             <FollowingCard user={user} history={props.history} key={key} />
           ))
         ) : (
