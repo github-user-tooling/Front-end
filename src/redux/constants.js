@@ -15,6 +15,7 @@ const constants = {
   ADD_NOTE: 'user:add-note',
   EDIT_NOTE: 'user:edit-note',
   DELETE_NOTE: 'user:delete-note',
+  FOLLOW_USER: 'data:follow_user',
   UNFOLLOW_USER: 'data:unfollow_user'
 };
 

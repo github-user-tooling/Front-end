@@ -7,32 +7,27 @@ import { connect } from "react-redux";
 import Chart from '../chart/Chart';
 import Tendencies from '../tendenciesCard/TendenciesCard';
 import NotesModal from '../notesModal/NotesModal';
-// Actions
-import { detailCardAction, favoriteUser, getFollowers, unfollowUser } from "../../../redux/actions/dataActions";
-import { toggleModal } from "../../../redux/actions/userActions";
-
 import { textEmoji } from 'markdown-to-text-emoji';
+// Actions
+import { detailCardAction, favoriteUser, followUser, unfollowUser } from "../../../redux/actions/dataActions";
+import { toggleModal } from "../../../redux/actions/userActions";
 
 function DetailsCard(props) {
   useEffect(() => {
     props.detailCardAction(props.userID);
   }, []);
 
-  const handleFollow = userID => {
-    props.favoriteUser(userID);
-    props.getFollowers();
+  const handleFollow = user => {
+    props.followUser({ ...user, id: props.userID });
   }
 
   const handleUnfollow = userID => {
     props.unfollowUser(userID);
-    // props.getFollowers();
   }
 
   const emojify = () => textEmoji(props.userDetailData.bio);
 
-  if (!props.userDetailData) return <div>loading...</div>;
-
-  console.log('YEEEE', props.whoImFollowing);
+  if (!props.userDetailData || !props.whoImFollowing && props.userDetailData) return <div>loading...</div>;
 
   return (
     <>
@@ -67,7 +62,7 @@ function DetailsCard(props) {
               <button className="btn-unfollow" onClick={() => handleUnfollow(props.userID)}>Unfollow</button>
             </>
             :
-            <button className="btn-follow" onClick={() => handleFollow(props.userID)}>Follow</button>
+            <button className="btn-follow" onClick={() => handleFollow(props.userDetailData)}>Follow</button>
           }
         </div>
       </div>
@@ -86,7 +81,7 @@ const mapActionsToProps = {
   detailCardAction,
   toggleModal,
   favoriteUser,
-  getFollowers,
+  followUser,
   unfollowUser
 };
 
