@@ -19,7 +19,7 @@ function NotesModal(props) {
 
   useEffect(() => {
     if (props.isOpen) props.getNotes(props.userID);
-  }, []);
+  }, [props.isOpen]);
 
   useEffect(() => {
     props.filterNotes(props.notes);
@@ -63,13 +63,13 @@ function NotesModal(props) {
         {view === 'add' ?
           <>
             <span>Add Note</span>
-            <button onClick={changeView}>View Notes</button>
+            <button onClick={changeView} className="fancy-boi">View Notes</button>
           </>
           :
           <>
             <span>Notes</span>
 
-            <button onClick={changeView}>Add Note</button>
+            <button onClick={changeView} className="fancy-boi">Add Note</button>
           </>}
 
 

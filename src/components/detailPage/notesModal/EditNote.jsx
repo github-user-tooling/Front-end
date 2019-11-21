@@ -35,9 +35,15 @@ const EditNote = (props) => {
 
   return (
     <form className="add-notes" onSubmit={handleSubmit}>
+      <label>
+        Note Title:
       <input type="text" name="title" value={inputs.title} onChange={handleInput} />
+      </label>
+      <label>
+        Note Text:
       <textarea rows="10" name="body" value={inputs.body} onChange={handleInput} />
-      <button type="submit">Submit</button>
+      </label>
+      <button type="submit" className="fancy-boi">Submit</button>
     </form>
   )
 }
