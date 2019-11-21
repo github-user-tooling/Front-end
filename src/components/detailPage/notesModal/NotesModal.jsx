@@ -9,6 +9,7 @@ import EditNote from './EditNote';
 import Note from './Note';
 // Actions
 import { toggleModal, getNotes } from "../../../redux/actions/userActions";
+import { filterNotes, setNotesSearch, triggerNotesSearch } from "../../../redux/actions/searchActions";
 // Modal
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
@@ -17,13 +18,16 @@ function NotesModal(props) {
   const [noteToEdit, setNoteToEdit] = useState(null);
 
   useEffect(() => {
-    props.getNotes(props.userID)
+    if (props.isOpen) props.getNotes(props.userID);
   }, []);
+
+  useEffect(() => {
+    props.filterNotes(props.notes);
+  }, [props.notes]);
 
   const editNoteHandler = note => {
     setView('edit');
     setNoteToEdit(note);
-    console.log('Note to edit:', note);
   }
 
   const changeView = () => {
@@ -34,9 +38,26 @@ function NotesModal(props) {
     }
   }
 
+  const handleSearching = e => {
+    props.setNotesSearch(e.target.value);
+  }
+
+  const checkSubmit = e => {
+    props.triggerNotesSearch(!props.trigger);
+  }
+
+  useEffect(() => {
+    props.filterNotes(props.notes.filter(e => {
+
+      return e.title.toLowerCase().includes(props.searchInput.toLowerCase());
+    }));
+
+  }, [props.trigger])
+
   return (
     <Modal isOpen={props.isOpen} toggle={props.toggleModal}>
       <ModalHeader toggle={props.toggleModal}>
+
         {view === 'add' ?
           <>
             <span>Add Note</span>
@@ -45,15 +66,30 @@ function NotesModal(props) {
           :
           <>
             <span>Notes</span>
+
             <button onClick={changeView}>Add Note</button>
           </>}
+
+
       </ModalHeader>
       <ModalBody>
-        {console.log(props.notes)}
-        {view === 'view' ? props.notes.map((note, idx) => (
-          <Note key={idx} note={note} edit={editNoteHandler} />
-        )) : view === 'add' ? <AddNote userID={props.userID} changeView={changeView} /> :
-            <EditNote note={noteToEdit} changeView={changeView} />
+        {
+          view !== 'add'
+          ? <form onSubmit={checkSubmit}>
+              <input placeholder="Search Notes" onChange={handleSearching} value={props.searchInput} />
+            </form>
+          : null
+        }
+
+        {
+          view === 'view' ?
+            props.notesList.map((note, idx) => (
+              <Note key={idx} note={note} edit={editNoteHandler} />
+            ))
+
+            : view === 'add' ? <AddNote userID={props.userID} changeView={changeView} />
+
+              : <EditNote note={noteToEdit} changeView={changeView} />
         }
       </ModalBody>
       <ModalFooter>
@@ -65,12 +101,21 @@ function NotesModal(props) {
 const mapStateToProps = state => ({
   isOpen: state.User.modalIsOpen,
   notes: state.User.notes,
-  userID: state.Data.userID
+  userID: state.Data.userID,
+
+  trigger: state.Search.noteSearchTrigger,
+  searchInput: state.Search.notesSearchInput,
+  notesList: state.Search.notesList
+
 });
 
 const mapActionsToProps = {
   toggleModal,
-  getNotes
+  getNotes,
+
+  triggerNotesSearch,
+  setNotesSearch,
+  filterNotes
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(NotesModal);

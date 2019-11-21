@@ -17,11 +17,11 @@ export const dashboardData = () => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const chartAction = (userID) => dispatch => {
+export const chartAction = userID => dispatch => {
   axiosWithAuth()
     .get(`${constants.BASE_URL_DEV}/user/${userID}/calendar`)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: constants.CHART_CONSTANT,
         payload: res.data
@@ -31,11 +31,11 @@ export const chartAction = (userID) => dispatch => {
 };
 
 
-export const tendenciesAction = (userID) => dispatch => {
+export const tendenciesAction = userID => dispatch => {
   axiosWithAuth()
     .get(`${constants.BASE_URL_DEV}/user/${userID}/tendencies`)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: constants.GET_TENDENCIES,
         payload: res.data
@@ -51,11 +51,24 @@ export const redirectDashboardAction = () => dispatch => {
   })
 }
 
+export const getFollowers = () => dispatch => {
+  axiosWithAuth()
+    .get('https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/following')
+    .then(res => {
+      dispatch({
+        type: constants.GET_FOLLOWERS,
+        payload: res.data
+      });
+    })
+    .catch(err => console.log(err));
+
+}
+
 export const detailCardAction = userID => dispatch => {
   axiosWithAuth()
     .get(`${constants.BASE_URL_DEV}/user/${userID}/profile`)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: constants.DETAILCARD_CONSTANT,
         payload: res.data
@@ -82,7 +95,7 @@ export const searchUser = queryData => dispatch => {
 
 // Used when client from dashboard to user details
 export const getUserDetails = userId => dispatch => {
-  console.log(userId);
+  // console.log(userId);
   dispatch({
     type: constants.SET_USER_ID,
     payload: userId
@@ -91,7 +104,7 @@ export const getUserDetails = userId => dispatch => {
 
 // Used to favorite the user from dashboard search
 export const favoriteUser = userId => dispatch => {
-  console.log(userId);
+  // console.log(userId);
   axios
     .post(
       `${constants.BASE_URL_DEV}/follow/${userId}`,
@@ -101,9 +114,33 @@ export const favoriteUser = userId => dispatch => {
       }
     )
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
     })
     .catch(err => {
       console.log(err.response);
     });
 };
+
+export const followUser = user => dispatch => {
+  axiosWithAuth()
+    .post(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/follow/${user.id}`)
+    .then(res => {
+      dispatch({
+        type: constants.FOLLOW_USER,
+        payload: user
+      });
+    })
+    .catch(err => console.log(err));
+}
+
+export const unfollowUser = userID => dispatch => {
+  axiosWithAuth()
+    .post(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/unfollow/${userID}`, {})
+    .then(res => {
+      dispatch({
+        type: constants.UNFOLLOW_USER,
+        payload: userID
+      });
+    })
+    .catch(err => console.log(err));
+}

@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 // - Reducers
 import userReducer from "./reducers/userReducer";
 import dataReducer from "./reducers/dataReducer";
+import searchReducer from "./reducers/searchReducer";
 
 const middleware = [thunk];
 
@@ -11,7 +12,8 @@ const initialState = {};
 
 const rootReducer = combineReducers({
   User: userReducer,
-  Data: dataReducer
+  Data: dataReducer,
+  Search: searchReducer
 });
 
 const composeEnhancers =
