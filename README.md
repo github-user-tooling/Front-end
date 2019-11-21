@@ -15,15 +15,15 @@
 
 ---
 ### Development Team
-Frontend (React):
+**Frontend (React):**
  - Michael Nunes: Lead Frontend Developer
  - Matthew Endicott: Frontend Developer
  - XuHui Zhu: Frontend Developer
 
-Frontend (Landing Page):
+**Frontend (Landing Page):**
  - George Davila: Frontend Developer
  - Milo Rastgoo: Frontend Developer
 
 
-Backend:
+**Backend:**
  - William Sedlacek: Lead Backend Developer
