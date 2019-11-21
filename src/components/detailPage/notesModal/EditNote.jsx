@@ -7,7 +7,6 @@ import './EditNote.scss';
 import { editNote } from "../../../redux/actions/userActions";
 
 const EditNote = (props) => {
-  console.log('EditNote ID', props.note.id);
   const [inputs, setInputs] = useState({
     id: '',
     title: '',
@@ -28,16 +27,21 @@ const EditNote = (props) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('To Submit', inputs);
     props.editNote(inputs);
-    props.changeView();
+    props.setModalView('default');
   }
 
   return (
     <form className="add-notes" onSubmit={handleSubmit}>
+      <label>
+        Note Title:
       <input type="text" name="title" value={inputs.title} onChange={handleInput} />
+      </label>
+      <label>
+        Note Text:
       <textarea rows="10" name="body" value={inputs.body} onChange={handleInput} />
-      <button type="submit">Submit</button>
+      </label>
+      <button type="submit" className="fancy-boi">Submit</button>
     </form>
   )
 }

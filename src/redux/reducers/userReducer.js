@@ -4,8 +4,11 @@ const initialState = {
   userLogin: {
     isLogged: null
   },
-  modalIsOpen: false,
-  notes: []
+  notesModal: {
+    isOpen: false,
+    view: 'default',
+    notes: [],
+  }
 };
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -25,37 +28,61 @@ const userReducer = (state = initialState, { type, payload }) => {
     case constants.TOGGLE_MODAL:
       return {
         ...state,
-        modalIsOpen: !state.modalIsOpen
+        notesModal: {
+          ...state.notesModal,
+          isOpen: !state.notesModal.isOpen
+        }
+      }
+
+    case constants.SET_MODAL_VIEW:
+      return {
+        ...state,
+        notesModal: {
+          ...state.notesModal,
+          view: payload
+        }
       }
 
     case constants.GET_NOTES:
       return {
         ...state,
-        notes: payload
+        notesModal: {
+          ...state.notesModal,
+          notes: payload
+        }
       }
 
     case constants.ADD_NOTE:
       return {
         ...state,
-        notes: [...state.notes, payload]
+        notesModal: {
+          ...state.notesModal,
+          notes: [...state.notesModal.notes, payload]
+        }
       }
 
     case constants.EDIT_NOTE:
       return {
         ...state,
-        notes: state.notes.map(note => {
-          if (note.id === payload.id) {
-            return payload;
-          } else {
-            return note;
-          }
-        })
+        notesModal: {
+          ...state.notesModal,
+          notes: state.notesModal.notes.map(note => {
+            if (note.id === payload.id) {
+              return payload;
+            } else {
+              return note;
+            }
+          })
+        }
       }
 
     case constants.DELETE_NOTE:
       return {
         ...state,
-        notes: state.notes.filter(note => note.id !== payload.id)
+        notesModal: {
+          ...state.notesModal,
+          notes: state.notesModal.notes.filter(note => note.id !== payload.id)
+        }
       }
 
     default:

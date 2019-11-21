@@ -1,6 +1,6 @@
 import constants from "../constants";
 import axios from "axios";
-import { axiosWithAuth } from '../../components/utils/axiosWithAuth';
+import { axiosWithAuth } from "../../components/utils/axiosWithAuth";
 
 // For user on dashboard
 export const dashboardData = () => dispatch => {
@@ -30,7 +30,6 @@ export const chartAction = userID => dispatch => {
     .catch(err => console.log(err));
 };
 
-
 export const tendenciesAction = userID => dispatch => {
   axiosWithAuth()
     .get(`${constants.BASE_URL_DEV}/user/${userID}/tendencies`)
@@ -48,12 +47,12 @@ export const tendenciesAction = userID => dispatch => {
 export const redirectDashboardAction = () => dispatch => {
   dispatch({
     type: constants.REDIRECT_TO_DASHBOARD
-  })
-}
+  });
+};
 
 export const getFollowers = () => dispatch => {
   axiosWithAuth()
-    .get('https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/following')
+    .get(`${constants.BASE_URL_DEV}/user/following`)
     .then(res => {
       dispatch({
         type: constants.GET_FOLLOWERS,
@@ -61,8 +60,7 @@ export const getFollowers = () => dispatch => {
       });
     })
     .catch(err => console.log(err));
-
-}
+};
 
 export const detailCardAction = userID => dispatch => {
   axiosWithAuth()
@@ -123,7 +121,9 @@ export const favoriteUser = userId => dispatch => {
 
 export const followUser = user => dispatch => {
   axiosWithAuth()
-    .post(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/follow/${user.id}`)
+    .post(
+      `${constants.BASE_URL_DEV}/follow/${user.id}`
+    )
     .then(res => {
       dispatch({
         type: constants.FOLLOW_USER,
@@ -131,11 +131,14 @@ export const followUser = user => dispatch => {
       });
     })
     .catch(err => console.log(err));
-}
+};
 
 export const unfollowUser = userID => dispatch => {
   axiosWithAuth()
-    .post(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/unfollow/${userID}`, {})
+    .post(
+      `${constants.BASE_URL_DEV}/unfollow/${userID}`,
+      {}
+    )
     .then(res => {
       dispatch({
         type: constants.UNFOLLOW_USER,
@@ -143,4 +146,4 @@ export const unfollowUser = userID => dispatch => {
       });
     })
     .catch(err => console.log(err));
-}
+};
