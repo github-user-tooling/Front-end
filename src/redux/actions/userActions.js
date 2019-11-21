@@ -1,29 +1,30 @@
-import constants from '../constants';
-import { axiosWithAuth } from '../../components/utils/axiosWithAuth';
+import constants from "../constants";
+import { axiosWithAuth } from "../../components/utils/axiosWithAuth";
+import { noConflict } from "q";
 
 export const loginUser = () => dispatch => {
   dispatch({
     type: constants.LOGIN_USER,
     payload: {
-      isLogged: true,
+      isLogged: true
     }
   });
-}
+};
 
 export const logoutUser = () => dispatch => {
   dispatch({
     type: constants.LOGOUT_USER,
     payload: {
-      isLogged: false,
+      isLogged: false
     }
   });
-}
+};
 
 export const toggleModal = () => dispatch => {
   dispatch({
-    type: constants.TOGGLE_MODAL,
-  })
-}
+    type: constants.TOGGLE_MODAL
+  });
+};
 
 export const getNotes = userID => dispatch => {
   axiosWithAuth()
@@ -35,7 +36,7 @@ export const getNotes = userID => dispatch => {
       });
     })
     .catch(err => console.log(constants.GET_NOTES, err));
-}
+};
 
 export const addNote = (userID, note) => dispatch => {
   axiosWithAuth()
@@ -47,12 +48,12 @@ export const addNote = (userID, note) => dispatch => {
       });
     })
     .catch(err => console.log(constants.ADD_NOTE, err));
-}
+};
 
 export const editNote = note => dispatch => {
   const noteContent = { title: note.title, body: note.body };
-  axiosWithAuth() 
-    .put(`${constants.BASE_URL_DEV}/notes/${note.id}`, theNote) 
+  axiosWithAuth()
+    .put(`${constants.BASE_URL_DEV}/notes/${note.id}`, noteContent)
     .then(res => {
       dispatch({
         type: constants.EDIT_NOTE,
@@ -60,7 +61,7 @@ export const editNote = note => dispatch => {
       });
     })
     .catch(err => console.log(constants.EDIT_NOTE, err));
-}
+};
 
 export const deleteNote = noteID => dispatch => {
   axiosWithAuth()
@@ -72,4 +73,4 @@ export const deleteNote = noteID => dispatch => {
       });
     })
     .catch(err => console.log(constants.DELETE_NOTE, err));
-}
+};
