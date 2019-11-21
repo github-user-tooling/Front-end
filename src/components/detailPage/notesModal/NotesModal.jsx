@@ -42,10 +42,8 @@ function NotesModal(props) {
     props.setNotesSearch(e.target.value);
   }
 
-  const checkKeyPress = e => {
-    if (e.key === "Enter") {
-      props.triggerNotesSearch(!props.trigger);
-    }
+  const checkSubmit = e => {
+    props.triggerNotesSearch(!props.trigger);
   }
 
   useEffect(() => {
@@ -77,8 +75,10 @@ function NotesModal(props) {
       <ModalBody>
         {
           view !== 'add'
-            ? <input placeholder="Search Notes" onKeyPress={checkKeyPress} onChange={handleSearching} value={props.searchInput} />
-            : null
+          ? <form onSubmit={checkSubmit}>
+              <input placeholder="Search Notes" onChange={handleSearching} value={props.searchInput} />
+            </form>
+          : null
         }
 
         {
