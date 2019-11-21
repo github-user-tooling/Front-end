@@ -7,6 +7,7 @@ import { axiosWithAuth } from './axiosWithAuth';
 
 import { loginUser, logoutUser } from "../../redux/actions/userActions";
 
+import constants from "../../redux/constants"
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const [isLogged, setIsLogged] = useState(rest.userLogin.isLogged || null);
@@ -14,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   useEffect(() => {
     if (rest.userLogin.isLogged === null || !rest.userLogin.isLogged) {
       axiosWithAuth()
-        .get('https://staging-master-5ton9t2hfmasnxc.herokuapp.com/auth/active')
+        .get(`${constants.BASE_URL_DEV}/auth/active`)
         .then(res => {
           setIsLogged(true)
           rest.loginUser();

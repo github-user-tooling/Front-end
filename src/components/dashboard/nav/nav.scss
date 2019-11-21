@@ -9,6 +9,11 @@
     margin: 0 30px;
     color: #fff;
   }
+  h1 {
+    &:hover {
+      cursor: pointer;
+    }
+  }
   a {
     font-weight: 600;
     text-decoration: none;
@@ -20,6 +25,28 @@
       color: #23292e;
       background: #fff;
     }
+  }
+}
+
+#nav__left-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#info__back {
+  border: 1px solid #fff;
+  padding: 4px 8px;
+  margin: 0 0 0 13px;
+  color: #fff;    
+  transition: all 80ms ease-in-out;
+  h5 {
+    font-size: 0.8rem;
+  }
+  &:hover {
+    cursor: pointer;
+    color: #23292e;
+    background: #fff;
   }
 }
 

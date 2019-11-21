@@ -39,7 +39,7 @@ function TendenciesCard(props) {
   const weekdayName = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   
   useEffect(() => {
-    console.log(props.state.Data.tendenciesData.mostOftenHour);
+    // console.log(props.state.Data.tendenciesData.mostOftenHour);
   }, [props.state.Data.tendenciesData.mostOftenHour]);
 
   return (
