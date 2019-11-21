@@ -14,3 +14,15 @@
 
 
 who and what they did
+Frontend (React):
+ - Michael Nunes: Lead Frontend Developer
+ - Matthew Endicott: Frontend Developer
+ - XuHui Zhu: Frontend Developer
+
+Frontend (Landing Page):
+ - George Davila: Frontend Developer
+ - Milo Rastgoo: Frontend Developer
+
+
+Backend:
+ - William Sedlacek: Lead Backend Developer
