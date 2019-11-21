@@ -5,7 +5,7 @@ import { axiosWithAuth } from '../../components/utils/axiosWithAuth';
 // For user on dashboard
 export const dashboardData = () => dispatch => {
   axiosWithAuth()
-    .get("https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/dashboard", {
+    .get(`${constants.BASE_URL_DEV}/user/dashboard`, {
       withCredentials: true
     })
     .then(res => {
@@ -19,7 +19,7 @@ export const dashboardData = () => dispatch => {
 
 export const chartAction = (userID) => dispatch => {
   axiosWithAuth()
-    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/calendar`)
+    .get(`${constants.BASE_URL_DEV}/user/${userID}/calendar`)
     .then(res => {
       console.log(res)
       dispatch({
@@ -33,7 +33,7 @@ export const chartAction = (userID) => dispatch => {
 
 export const tendenciesAction = (userID) => dispatch => {
   axiosWithAuth()
-    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/tendencies`)
+    .get(`${constants.BASE_URL_DEV}/user/${userID}/tendencies`)
     .then(res => {
       console.log(res)
       dispatch({
@@ -53,7 +53,7 @@ export const redirectDashboardAction = () => dispatch => {
 
 export const detailCardAction = userID => dispatch => {
   axiosWithAuth()
-    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/profile`)
+    .get(`${constants.BASE_URL_DEV}/user/${userID}/profile`)
     .then(res => {
       console.log(res)
       dispatch({
@@ -66,7 +66,7 @@ export const detailCardAction = userID => dispatch => {
 
 export const searchUser = queryData => dispatch => {
   axios
-    .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/search/${queryData}`, {
+    .get(`${constants.BASE_URL_DEV}/search/${queryData}`, {
       withCredentials: true
     })
     .then(res => {
@@ -94,7 +94,7 @@ export const favoriteUser = userId => dispatch => {
   console.log(userId);
   axios
     .post(
-      `https://staging-master-5ton9t2hfmasnxc.herokuapp.com/follow/${userId}`,
+      `${constants.BASE_URL_DEV}/follow/${userId}`,
       {},
       {
         withCredentials: true
