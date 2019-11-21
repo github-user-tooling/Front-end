@@ -30,7 +30,10 @@ function NotesModal(props) {
   }
 
   const handleSearching = e => {
-    props.setNotesSearch(e.target.value);
+    if (e.target.value.length < 20) {
+      props.setNotesSearch(e.target.value);
+    }
+    // length validation
   }
 
   const checkSubmit = e => {
