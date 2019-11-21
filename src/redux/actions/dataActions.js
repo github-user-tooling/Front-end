@@ -52,7 +52,7 @@ export const redirectDashboardAction = () => dispatch => {
 
 export const getFollowers = () => dispatch => {
   axiosWithAuth()
-    .get("https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/following")
+    .get(`${constants.BASE_URL_DEV}/user/following`)
     .then(res => {
       dispatch({
         type: constants.GET_FOLLOWERS,
@@ -122,7 +122,7 @@ export const favoriteUser = userId => dispatch => {
 export const followUser = user => dispatch => {
   axiosWithAuth()
     .post(
-      `https://staging-master-5ton9t2hfmasnxc.herokuapp.com/follow/${user.id}`
+      `${constants.BASE_URL_DEV}/follow/${user.id}`
     )
     .then(res => {
       dispatch({
@@ -136,7 +136,7 @@ export const followUser = user => dispatch => {
 export const unfollowUser = userID => dispatch => {
   axiosWithAuth()
     .post(
-      `https://staging-master-5ton9t2hfmasnxc.herokuapp.com/unfollow/${userID}`,
+      `${constants.BASE_URL_DEV}/unfollow/${userID}`,
       {}
     )
     .then(res => {
