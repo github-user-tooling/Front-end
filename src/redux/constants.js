@@ -19,7 +19,9 @@ const constants = {
   UNFOLLOW_USER: 'data:unfollow_user',
   TRIGGER_NOTES_SEARCH: 'search:trigger-search-notes',
   SET_NOTES_SEARCH: 'search:set-search-notes',
-  FILTER_NOTES: 'search:filter-search-notes'
+  FILTER_NOTES: 'search:filter-search-notes',
+  BASE_URL_PROD: "https://git-user-breakdown.herokuapp.com",
+  BASE_URL_DEV: "https://staging-master-5ton9t2hfmasnxc.herokuapp.com" 
 };
 
 export default constants;
