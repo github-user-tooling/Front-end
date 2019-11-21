@@ -15,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   useEffect(() => {
     if (rest.userLogin.isLogged === null || !rest.userLogin.isLogged) {
       axiosWithAuth()
-        .get(`${constants.BASE_URL_DEV}/auth/active`)
+        .get(`${constants.BASE_URL_POST_PROD}/auth/active`)
         .then(res => {
           setIsLogged(true)
           rest.loginUser();

@@ -35,7 +35,7 @@ export const setModalView = view => dispatch => {
 
 export const getNotes = userID => dispatch => {
   axiosWithAuth()
-    .get(`${constants.BASE_URL_DEV}/user/${userID}/notes/`)
+    .get(`${constants.BASE_URL_POST_PROD}/user/${userID}/notes/`)
     .then(res => {
       dispatch({
         type: constants.GET_NOTES,
@@ -47,7 +47,7 @@ export const getNotes = userID => dispatch => {
 
 export const addNote = (userID, note) => dispatch => {
   axiosWithAuth()
-    .post(`${constants.BASE_URL_DEV}/user/${userID}/notes/`, note)
+    .post(`${constants.BASE_URL_POST_PROD}/user/${userID}/notes/`, note)
     .then(res => {
       dispatch({
         type: constants.ADD_NOTE,
@@ -60,7 +60,7 @@ export const addNote = (userID, note) => dispatch => {
 export const editNote = note => dispatch => {
   const noteContent = { title: note.title, body: note.body };
   axiosWithAuth()
-    .put(`${constants.BASE_URL_DEV}/notes/${note.id}`, noteContent)
+    .put(`${constants.BASE_URL_POST_PROD}/notes/${note.id}`, noteContent)
     .then(res => {
       dispatch({
         type: constants.EDIT_NOTE,
@@ -72,7 +72,7 @@ export const editNote = note => dispatch => {
 
 export const deleteNote = noteID => dispatch => {
   axiosWithAuth()
-    .delete(`${constants.BASE_URL_DEV}/notes/${noteID}`)
+    .delete(`${constants.BASE_URL_POST_PROD}/notes/${noteID}`)
     .then(res => {
       dispatch({
         type: constants.DELETE_NOTE,

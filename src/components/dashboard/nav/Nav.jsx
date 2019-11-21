@@ -14,7 +14,7 @@ function Nav(props) {
   const handleClick = e => {
     console.log(e);
     axios
-      .get(`${constants.BASE_URL_DEV}/auth/logout`)
+      .get(`${constants.BASE_URL_POST_PROD}/auth/logout`)
       .catch(err => console.log(err));
   };
 
@@ -38,7 +38,7 @@ function Nav(props) {
           {props.navInfo ? props.navInfo.login : "GitBook"}
         </h1>
       </div>
-      <a href={`${constants.BASE_URL_DEV}/auth/logout`} onClick={handleClick}>
+      <a href={`${constants.BASE_URL_POST_PROD}/auth/logout`} onClick={handleClick}>
         Logout
       </a>
     </div>

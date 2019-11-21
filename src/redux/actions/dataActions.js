@@ -5,7 +5,7 @@ import { axiosWithAuth } from "../../components/utils/axiosWithAuth";
 // For user on dashboard
 export const dashboardData = () => dispatch => {
   axiosWithAuth()
-    .get(`${constants.BASE_URL_DEV}/user/dashboard`, {
+    .get(`${constants.BASE_URL_POST_PROD}/user/dashboard`, {
       withCredentials: true
     })
     .then(res => {
@@ -19,7 +19,7 @@ export const dashboardData = () => dispatch => {
 
 export const chartAction = userID => dispatch => {
   axiosWithAuth()
-    .get(`${constants.BASE_URL_DEV}/user/${userID}/calendar`)
+    .get(`${constants.BASE_URL_POST_PROD}/user/${userID}/calendar`)
     .then(res => {
       // console.log(res)
       dispatch({
@@ -32,7 +32,7 @@ export const chartAction = userID => dispatch => {
 
 export const tendenciesAction = userID => dispatch => {
   axiosWithAuth()
-    .get(`${constants.BASE_URL_DEV}/user/${userID}/tendencies`)
+    .get(`${constants.BASE_URL_POST_PROD}/user/${userID}/tendencies`)
     .then(res => {
       // console.log(res)
       dispatch({
@@ -52,7 +52,7 @@ export const redirectDashboardAction = () => dispatch => {
 
 export const getFollowers = () => dispatch => {
   axiosWithAuth()
-    .get(`${constants.BASE_URL_DEV}/user/following`)
+    .get(`${constants.BASE_URL_POST_PROD}/user/following`)
     .then(res => {
       dispatch({
         type: constants.GET_FOLLOWERS,
@@ -64,7 +64,7 @@ export const getFollowers = () => dispatch => {
 
 export const detailCardAction = userID => dispatch => {
   axiosWithAuth()
-    .get(`${constants.BASE_URL_DEV}/user/${userID}/profile`)
+    .get(`${constants.BASE_URL_POST_PROD}/user/${userID}/profile`)
     .then(res => {
       // console.log(res)
       dispatch({
@@ -78,7 +78,7 @@ export const detailCardAction = userID => dispatch => {
 export const searchUser = queryData => dispatch => {
   if (queryData.trim() === '') return
   axios
-    .get(`${constants.BASE_URL_DEV}/search/${queryData}`, {
+    .get(`${constants.BASE_URL_POST_PROD}/search/${queryData}`, {
       withCredentials: true
     })
     .then(res => {
@@ -106,7 +106,7 @@ export const favoriteUser = userId => dispatch => {
   // console.log(userId);
   axios
     .post(
-      `${constants.BASE_URL_DEV}/follow/${userId}`,
+      `${constants.BASE_URL_POST_PROD}/follow/${userId}`,
       {},
       {
         withCredentials: true
@@ -123,7 +123,7 @@ export const favoriteUser = userId => dispatch => {
 export const followUser = user => dispatch => {
   axiosWithAuth()
     .post(
-      `${constants.BASE_URL_DEV}/follow/${user.id}`
+      `${constants.BASE_URL_POST_PROD}/follow/${user.id}`
     )
     .then(res => {
       dispatch({
@@ -137,7 +137,7 @@ export const followUser = user => dispatch => {
 export const unfollowUser = userID => dispatch => {
   axiosWithAuth()
     .post(
-      `${constants.BASE_URL_DEV}/unfollow/${userID}`,
+      `${constants.BASE_URL_POST_PROD}/unfollow/${userID}`,
       {}
     )
     .then(res => {
