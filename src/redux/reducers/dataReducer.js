@@ -43,7 +43,6 @@ const dataReducer = (state = initialState, { type, payload }) => {
       };
 
     case constants.SET_USER_ID:
-      console.log(payload)
       return {
         ...state,
         userID: payload

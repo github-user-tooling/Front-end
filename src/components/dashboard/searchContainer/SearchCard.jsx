@@ -21,7 +21,6 @@ function SearchCard(props) {
   };
 
   const handleFavorite = e => {
-    console.log(btnStatus.favoriteActive);
     setBtnStatus({
       ...btnStatus,
       favoriteActive: !btnStatus.favoriteActive
@@ -33,7 +32,9 @@ function SearchCard(props) {
 
   return (
     <div id="dashboard-resultsCard">
-      <h1 onClick={handleDetailsClick}>{props.search.login}</h1>
+      <div id="resultsCard__clickable" onClick={handleDetailsClick}>
+        <h1>{props.search.login}</h1>
+      </div>
       <i
         className={
           btnStatus.favoriteActive ? "fa fa-github rCActive" : "fa fa-github"

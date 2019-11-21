@@ -76,6 +76,7 @@ export const detailCardAction = userID => dispatch => {
 };
 
 export const searchUser = queryData => dispatch => {
+  if (queryData.trim() === '') return
   axios
     .get(`${constants.BASE_URL_DEV}/search/${queryData}`, {
       withCredentials: true

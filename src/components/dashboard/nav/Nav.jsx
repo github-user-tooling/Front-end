@@ -34,11 +34,7 @@ function Nav(props) {
             <h5>Back</h5>
           </div>
         )}
-        <h1
-          onClick={
-            (props.match.path === "/" && props.navInfo) ? handleDetailsClick : handleClickHome
-          }
-        >
+        <h1 onClick={props.navInfo && handleDetailsClick}>
           {props.navInfo ? props.navInfo.login : "GitBook"}
         </h1>
       </div>

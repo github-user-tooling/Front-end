@@ -3,8 +3,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 // Styles
 import "./followingContainer.scss";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"; 
 // Components
 import FollowingCard from "../followingCard/FollowingCard";
 // Loader
@@ -24,7 +23,7 @@ function FollowingContainer(props) {
   });
 
   useEffect(() => {
-    if (!props.followerData) return; 
+    if (!props.followerData) return;
     setFollowingSearch({
       ...followingSearch,
       searchData: [...props.followerData]
@@ -40,13 +39,15 @@ function FollowingContainer(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (followingSearch.query !== "" && followingSearch.query.trim() === "")
+      return;
     if (props.followerData) {
       setFollowingSearch({
         ...followingSearch,
         searchData: props.followerData.filter(u => {
           return u.login
             .toLowerCase()
-            .includes(followingSearch.query.toLowerCase());
+            .includes(followingSearch.query.trim().toLowerCase());
         })
       });
     }

@@ -16,7 +16,7 @@ function FollowingCard({ getUserDetails, user, history }) {
   return (
     <div id="dashboard-followingCard" onClick={handleClick}>
       <div id="followingCard__img-container">
-        <img src={user.avatarUrl} alt="user image" />
+        <img src={user.avatarUrl} alt="GitHub user avatar" />
       </div>
       <div id="followingCard__info">
         <h4>{user.login}</h4>

@@ -72,8 +72,7 @@ function TendenciesCard(props) {
 const mapStateToProps = state => ({
   state
 });
-
-// ! Wrong!!!!!!!!!!!!! < = mucho bad < = no again < = or you fired
+ 
 const mapActionsToProps = {
   tendenciesAction
 };

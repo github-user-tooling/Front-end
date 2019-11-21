@@ -7,14 +7,17 @@
   width: 75%;
   margin: 30px auto;
   padding: 10px 15px;
+  transition: all ease-in 70ms;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+  }
   h1 {
     font-size: 1.5rem;
     padding: 5px 10px;
-    &:hover {
-      cursor: pointer;
-    }
   }
   i {
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,6 +33,14 @@
       color: #4afc4a;
       color: #25c425;
     }
+  }
+}
+
+#resultsCard__clickable {
+  width: 90%;
+  height: 100%;
+  &:hover {
+    cursor: pointer;
   }
 }
 
@@ -50,7 +61,7 @@
 @media (max-device-width: 810px) {
   #dashboard-resultsCard {
     h1 {
-      font-size: 1.5rem; 
+      font-size: 1.5rem;
     }
   }
 }

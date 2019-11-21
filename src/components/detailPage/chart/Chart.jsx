@@ -11,13 +11,13 @@ import { Bar } from 'react-chartjs-2';
 function Chart(props) {
   useEffect(() => {
     props.chartAction(props.userID);
-  }, []);
+  }, []); 
 
   const barData = {
     labels: props.chartData.months,
     datasets: [
       {
-        label: props.username,
+        label: `${props.username}'s commits`,
         backgroundColor: 'rgb(0,191,255)',
         borderColor: 'rgb(0,255,255)',
         borderWidth: 1,
@@ -45,17 +45,4 @@ const mapActionsToProps = {
   chartAction
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(Chart);
-
-// // Bar Properties
-// data: (PropTypes.object | PropTypes.func).isRequired,
-// width: PropTypes.number,
-// height: PropTypes.number,
-// id: PropTypes.string,
-// legend: PropTypes.object,
-// options: PropTypes.object,
-// redraw: PropTypes.bool,
-// getDatasetAtEvent: PropTypes.func,
-// getElementAtEvent: PropTypes.func,
-// getElementsAtEvent: PropTypes.func
-// onElementsClick: PropTypes.func, // alias for getElementsAtEvent (backward compatibility)
+export default connect(mapStateToProps, mapActionsToProps)(Chart); 
