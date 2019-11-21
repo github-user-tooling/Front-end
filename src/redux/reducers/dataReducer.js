@@ -50,17 +50,25 @@ const dataReducer = (state = initialState, { type, payload }) => {
       };
 
     case constants.GET_FOLLOWERS:
-      // console.log('get-followers', payload);
       return {
         ...state,
         dashboardData: { ...state.dashboardData.user, following: payload }
+      }
+
+    case constants.FOLLOW_USER:
+      return {
+        ...state,
+        dashboardData: {
+          ...state.dashboardData,
+          following: [...state.dashboardData.following, payload]
+        }
       }
 
     case constants.UNFOLLOW_USER:
       return {
         ...state,
         dashboardData: {
-          ...state.dashboardData.user,
+          ...state.dashboardData,
           following: state.dashboardData.following.filter(follower => follower.id !== payload)
         }
       }
@@ -70,6 +78,7 @@ const dataReducer = (state = initialState, { type, payload }) => {
         ...state,
         tendenciesData: { ...payload }
       }
+
     default:
       return state;
   }

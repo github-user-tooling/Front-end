@@ -17,11 +17,11 @@ export const dashboardData = () => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const chartAction = (userID) => dispatch => {
+export const chartAction = userID => dispatch => {
   axiosWithAuth()
     .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/calendar`)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: constants.CHART_CONSTANT,
         payload: res.data
@@ -31,11 +31,11 @@ export const chartAction = (userID) => dispatch => {
 };
 
 
-export const tendenciesAction = (userID) => dispatch => {
+export const tendenciesAction = userID => dispatch => {
   axiosWithAuth()
     .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/tendencies`)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: constants.GET_TENDENCIES,
         payload: res.data
@@ -68,7 +68,7 @@ export const detailCardAction = userID => dispatch => {
   axiosWithAuth()
     .get(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/user/${userID}/profile`)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       dispatch({
         type: constants.DETAILCARD_CONSTANT,
         payload: res.data
@@ -95,7 +95,7 @@ export const searchUser = queryData => dispatch => {
 
 // Used when client from dashboard to user details
 export const getUserDetails = userId => dispatch => {
-  console.log(userId);
+  // console.log(userId);
   dispatch({
     type: constants.SET_USER_ID,
     payload: userId
@@ -104,7 +104,7 @@ export const getUserDetails = userId => dispatch => {
 
 // Used to favorite the user from dashboard search
 export const favoriteUser = userId => dispatch => {
-  console.log(userId);
+  // console.log(userId);
   axios
     .post(
       `https://staging-master-5ton9t2hfmasnxc.herokuapp.com/follow/${userId}`,
@@ -114,19 +114,29 @@ export const favoriteUser = userId => dispatch => {
       }
     )
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
     })
     .catch(err => {
       console.log(err.response);
     });
 };
 
-///:id - Unfollow a specific user from the current user.
+export const followUser = user => dispatch => {
+  axiosWithAuth()
+    .post(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/follow/${user.id}`)
+    .then(res => {
+      dispatch({
+        type: constants.FOLLOW_USER,
+        payload: user
+      });
+    })
+    .catch(err => console.log(err));
+}
+
 export const unfollowUser = userID => dispatch => {
   axiosWithAuth()
     .post(`https://staging-master-5ton9t2hfmasnxc.herokuapp.com/unfollow/${userID}`, {})
     .then(res => {
-      console.log(res);
       dispatch({
         type: constants.UNFOLLOW_USER,
         payload: userID
