@@ -37,6 +37,7 @@ function NotesModal(props) {
   }
 
   const checkSubmit = e => {
+    e.preventDefault();
     props.triggerNotesSearch(!props.trigger);
   }
 
