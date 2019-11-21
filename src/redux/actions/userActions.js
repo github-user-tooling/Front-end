@@ -26,6 +26,13 @@ export const toggleModal = () => dispatch => {
   });
 };
 
+export const setModalView = view => dispatch => {
+  dispatch({
+    type: constants.SET_MODAL_VIEW,
+    payload: view
+  });
+}
+
 export const getNotes = userID => dispatch => {
   axiosWithAuth()
     .get(`${constants.BASE_URL_DEV}/user/${userID}/notes/`)

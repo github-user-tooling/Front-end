@@ -1,0 +1,10 @@
+.add-notes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: .2rem;
+  
+  input {
+    width: 100%;
+  }
+}
