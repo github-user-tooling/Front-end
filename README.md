@@ -1,6 +1,6 @@
 ![GitBook](https://github.com/build-week-github-user-breakdown/Marketing-page/blob/master/img/logo.png?raw=true)
 
-GitBook is **the** GitHub account management tool that allows the client to analyze any Gibhub user to research user commit rates, common tendencies, and personal information. This is integrated with GitHub's native industry-standard protocol for authorization OAuth2.
+GitBook is **the** GitHub account management tool that allows the client to explore any Gibhub user to analyze user commit rates, common tendencies, and personal information. This is integrated with GitHub's native industry-standard protocol for authorization OAuth2.
 
 
 ### Development Team
