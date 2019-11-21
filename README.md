@@ -13,7 +13,8 @@
   *GithubV4, GraphQL*
 
 
-who and what they did
+---
+## Development Team
 Frontend (React):
  - Michael Nunes: Lead Frontend Developer
  - Matthew Endicott: Frontend Developer
