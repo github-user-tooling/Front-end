@@ -69,7 +69,7 @@ function NotesModal(props) {
         {props.modalView === 'default' ?
           <>
             <form onSubmit={checkSubmit}>
-              <input placeholder="Search Notes" onChange={handleSearching} value={props.searchInput} />
+              <input placeholder="Search Notes" onChange={handleSearching} value={props.searchInput} required />
             </form>
 
             {props.notesList.map((note, idx) => <Note key={idx} note={note} edit={editNoteHandler} />)}
