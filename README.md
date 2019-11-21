@@ -14,7 +14,7 @@
 
 
 ---
-## Development Team
+### Development Team
 Frontend (React):
  - Michael Nunes: Lead Frontend Developer
  - Matthew Endicott: Frontend Developer
