@@ -1,19 +1,49 @@
 #dashboard-searchBar {
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #d6d6d6;
-  box-shadow: 2px 2px 4px #111;
-  height: 15vh;
+  background: #d6d6d6dc;
+  box-shadow: 2px 2px 4px #333;
+  padding: 20px 0;
   margin: 0 0 5vh;
+  h1 {
+    font-weight: 500;
+    font-family: "Rubik", sans-serif;
+  }
   form {
     width: 75%;
     input {
       width: 100%;
       font-size: 1.5rem;
-      padding: 10px 15px;
+      padding: 3px 15px;
       outline: none;
+      background: none;
+      border: none;
+      border-bottom: 2px solid #333;
+    }
+  }
+}
+
+@media (max-device-width: 927px) {
+  #dashboard-searchBar {
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (max-device-width: 810px) {
+  #dashboard-searchBar {
+    margin: 3vh 0 2vh;
+  }
+}
+
+@media (max-device-width: 438px) {
+  #dashboard-searchBar {
+    h1 {
+      font-size: 1.5rem;
     }
   }
 }

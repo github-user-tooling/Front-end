@@ -16,7 +16,10 @@ const constants = {
   EDIT_NOTE: 'user:edit-note',
   DELETE_NOTE: 'user:delete-note',
   FOLLOW_USER: 'data:follow_user',
-  UNFOLLOW_USER: 'data:unfollow_user'
+  UNFOLLOW_USER: 'data:unfollow_user',
+  TRIGGER_NOTES_SEARCH: 'search:trigger-search-notes',
+  SET_NOTES_SEARCH: 'search:set-search-notes',
+  FILTER_NOTES: 'search:filter-search-notes'
 };
 
 export default constants;

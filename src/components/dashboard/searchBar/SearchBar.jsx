@@ -27,13 +27,16 @@ function SearchBar(props) {
     <div id="dashboard-searchBar">
       <h1>Git Search</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="query"
-          value={searchBar.query}
-          onChange={handleChange}
-          placeholder="Enter Username"
-        />
+        {/* props.dataCheck */}
+        {true ? (
+          <input
+            type="text"
+            name="query"
+            value={searchBar.query}
+            onChange={handleChange}
+            placeholder="Enter Username"
+          />
+        ) : null}
 
         <button type="submit" hidden></button>
       </form>
@@ -42,7 +45,7 @@ function SearchBar(props) {
 }
 
 const mapState = state => ({
-  state
+  dataCheck: state.Data.dashboardData.following
 });
 
 const mapProps = {

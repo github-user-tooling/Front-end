@@ -1,4 +1,5 @@
 #dashboard-nav {
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,6 +20,31 @@
       cursor: pointer;
       color: #23292e;
       background: #fff;
+    }
+  }
+}
+
+@media (max-device-width: 632px) {
+  #dashboard-nav {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media (max-device-width: 544px) {
+  #dashboard-nav {
+    a {
+      font-size: 0.7rem;
+      border: 1px solid #fff;
+    }
+  }
+}
+
+@media (max-device-width: 404px) {
+  #dashboard-nav {
+    h1 {
+      font-size: 1rem;
     }
   }
 }
