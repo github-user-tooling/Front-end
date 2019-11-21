@@ -59,7 +59,7 @@ function FollowingContainer(props) {
         <div id="followingFilter-wrapper">
           <form onSubmit={handleSubmit}>
             <input
-              autoComplete={false}
+              autoComplete="false"
               onChange={handleChange}
               value={followingSearch.query}
               type="text"
