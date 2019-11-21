@@ -1,6 +1,6 @@
 # Gitbook
 
-**Frameworks:** \n
+**Frameworks:**
   *React, React Strap, Bootstrap*
   
 **State Mangager:** 
