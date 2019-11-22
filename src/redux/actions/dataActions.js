@@ -76,7 +76,7 @@ export const detailCardAction = userID => dispatch => {
 };
 
 export const searchUser = queryData => dispatch => {
-  if (queryData.trim() === '') return
+  if (queryData.trim() === "") return;
   axios
     .get(`${constants.BASE_URL_POST_PROD}/search/${queryData}`, {
       withCredentials: true
@@ -122,9 +122,7 @@ export const favoriteUser = userId => dispatch => {
 
 export const followUser = user => dispatch => {
   axiosWithAuth()
-    .post(
-      `${constants.BASE_URL_POST_PROD}/follow/${user.id}`
-    )
+    .post(`${constants.BASE_URL_POST_PROD}/follow/${user.id}`)
     .then(res => {
       dispatch({
         type: constants.FOLLOW_USER,
@@ -136,10 +134,7 @@ export const followUser = user => dispatch => {
 
 export const unfollowUser = userID => dispatch => {
   axiosWithAuth()
-    .post(
-      `${constants.BASE_URL_POST_PROD}/unfollow/${userID}`,
-      {}
-    )
+    .post(`${constants.BASE_URL_POST_PROD}/unfollow/${userID}`, {})
     .then(res => {
       dispatch({
         type: constants.UNFOLLOW_USER,
@@ -147,4 +142,11 @@ export const unfollowUser = userID => dispatch => {
       });
     })
     .catch(err => console.log(err));
+};
+
+export const handleSearchResultsLoading = status => dispatch => {
+  dispatch({
+    type: constants.TOGGLE_LOADING,
+    payload: status 
+  });
 };

@@ -13,7 +13,6 @@ import { PacmanLoader } from "react-spinners";
 const override = css`
   display: block;
   margin: 50% 0 0 25%;
-  border-color: blue;
 `;
 
 function FollowingContainer(props) {

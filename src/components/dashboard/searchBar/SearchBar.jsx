@@ -4,7 +4,10 @@ import "./searchBar.scss";
 // Redux
 import { connect } from "react-redux";
 // Actions
-import { searchUser } from "../../../redux/actions/dataActions";
+import {
+  searchUser,
+  handleSearchResultsLoading
+} from "../../../redux/actions/dataActions";
 
 function SearchBar(props) {
   let [searchBar, setSearchBar] = useState({
@@ -20,13 +23,14 @@ function SearchBar(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    props.handleSearchResultsLoading(true)
     props.searchUser(searchBar.query);
   };
 
   return (
     <div id="dashboard-searchBar">
       <h1>Git Search</h1>
-      <form onSubmit={handleSubmit}> 
+      <form onSubmit={handleSubmit}>
         {props.dataCheck ? (
           <input
             type="text"
@@ -48,7 +52,8 @@ const mapState = state => ({
 });
 
 const mapProps = {
-  searchUser
+  searchUser,
+  handleSearchResultsLoading
 };
 
 export default connect(mapState, mapProps)(SearchBar);

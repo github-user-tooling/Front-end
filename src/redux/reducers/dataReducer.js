@@ -1,6 +1,7 @@
 import constants from "../constants";
 
 const initialState = {
+  searchResultsLoading: false,
   demoData: [],
   dashboardData: [],
   searchResults: [],
@@ -16,6 +17,12 @@ const dataReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         demoData: [...payload]
+      };
+
+    case constants.TOGGLE_LOADING:
+      return {
+        ...state,
+        searchResultsLoading: payload
       };
 
     case constants.CHART_CONSTANT:
@@ -52,7 +59,7 @@ const dataReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         dashboardData: { ...state.dashboardData.user, following: payload }
-      }
+      };
 
     case constants.FOLLOW_USER:
       return {
@@ -61,22 +68,24 @@ const dataReducer = (state = initialState, { type, payload }) => {
           ...state.dashboardData,
           following: [...state.dashboardData.following, payload]
         }
-      }
+      };
 
     case constants.UNFOLLOW_USER:
       return {
         ...state,
         dashboardData: {
           ...state.dashboardData,
-          following: state.dashboardData.following.filter(follower => follower.id !== payload)
+          following: state.dashboardData.following.filter(
+            follower => follower.id !== payload
+          )
         }
-      }
+      };
 
     case constants.GET_TENDENCIES:
       return {
         ...state,
         tendenciesData: { ...payload }
-      }
+      };
 
     default:
       return state;

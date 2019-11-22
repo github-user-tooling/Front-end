@@ -6,6 +6,7 @@ const constants = {
   DETAILCARD_CONSTANT: "data:get-userdetail-data",
   GET_DASHBOARD_DATA: "data:get-dashboard-data",
   GET_SEARCH_QUERY: "data:search-query",
+  TOGGLE_LOADING: "data:toggle-loading",
   LOGIN_USER: "user:login-user",
   LOGOUT_USER: "user:logout-user",
   GET_FOLLOWERS: "data:get-followers",
