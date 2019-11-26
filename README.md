@@ -7,7 +7,7 @@ GitBook is **the** GitHub account management tool that allows the client to expl
 **Frontend (React):**
  - Michael Nunes: Lead Frontend Developer
  - Matthew Endicott: Frontend Developer
- - XuHui Zhu: Frontend Developer
+ - XuHui Zhu: **The** Frontend Developer
 
 **Frontend (Landing Page):**
  - George Davila: Frontend Developer
